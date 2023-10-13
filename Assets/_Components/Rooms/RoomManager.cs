@@ -38,11 +38,14 @@ public class RoomManager : MonoBehaviour
         
         if (Input.GetMouseButtonDown(0))
         {
+            
             Vector3 mousePosition = Input.mousePosition;
             mousePosition.z = Camera.main.nearClipPlane;
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            
-            BuildRoom(shelterGrid.GetShelterGridTileWorldPosition(worldPosition));
+            if (shelterGrid.GetShelterGridTileWorldPosition(worldPosition)!=null)
+            {
+                BuildRoom(shelterGrid.GetShelterGridTileWorldPosition(worldPosition));
+            }
             
         }
     }

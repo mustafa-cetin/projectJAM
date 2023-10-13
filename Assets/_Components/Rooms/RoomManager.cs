@@ -23,8 +23,12 @@ public class RoomManager : MonoBehaviour
         shelterGrid=GetComponent<ShelterGrid>();
     }
     public void BuildRoom(ShelterGridTile tile){
-        if (!tile.IsOccupied && (CheckNeighboursIsOccupied(tile.GetPosition())) && CheckLadderAtTheTopLine(tile) && CanBuild(selectedRoomType.requirements))
+        if (!tile.IsOccupied
+         && CheckNeighboursIsOccupied(tile.GetPosition())
+          && selectedRoomType.IsBuildableTheTile(shelterGrid,tile)
+           && CanBuild(selectedRoomType.requirements))
         {
+
             tile.SetIsOccupied(true);
             DecreaseRequirements(selectedRoomType.requirements);
 
@@ -71,7 +75,7 @@ public class RoomManager : MonoBehaviour
 
          return Shelter.Instance.food>=roomRequirement.food
           && Shelter.Instance.electric>=roomRequirement.electric
-           && Shelter.Instance.water>=roomRequirement.water
+           && Shelter.Instance.metal>=roomRequirement.metal
            && Shelter.Instance.oxygen>=roomRequirement.oxygen;
         
     }
@@ -79,7 +83,7 @@ public class RoomManager : MonoBehaviour
     public void DecreaseRequirements(RoomRequirement roomRequirement){
         Shelter.Instance.electric-=roomRequirement.electric;
         Shelter.Instance.food-=roomRequirement.food;
-        Shelter.Instance.water-=roomRequirement.water;
+        Shelter.Instance.metal-=roomRequirement.metal;
         Shelter.Instance.oxygen-=roomRequirement.oxygen;
     }
 
@@ -91,20 +95,6 @@ public class RoomManager : MonoBehaviour
             return true;
         }
         
-        ShelterGridTile[] shelterGridLine=shelterGrid.GetGridTileLine(gridTile.GetPosition().y+1);
-        foreach (var shelterGridTile in shelterGridLine)
-        {
-            if (shelterGridTile.IsOccupied)
-            {
-                
-            if (shelterGridTile.GetRoom().GetType()==ladderRoom.GetType())
-            {
-                
-                return true;
-            }
-            
-            }
-        }
         return false;
         
             

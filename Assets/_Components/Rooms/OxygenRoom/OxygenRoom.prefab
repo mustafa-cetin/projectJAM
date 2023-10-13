@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8511162991763767673}
   m_Layer: 0
   m_Name: OxygenRoom
-  m_TagString: Untagged
+  m_TagString: BuildingRoom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f6be20cf2b7d74f4487c5e288a73dd00, type: 3}
-  m_Color: {r: 0, g: 0.91298866, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

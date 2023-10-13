@@ -67,8 +67,8 @@ public class ShelterGrid : MonoBehaviour
         Vector2Int[] relativePositions = {
             new Vector2Int(-1, 0), // left
             new Vector2Int(1, 0),  // right
-            new Vector2Int(0, 1),  // top
-            new Vector2Int(0, -1)  // bottom
+            new Vector2Int(0, 1)  // top
+            //new Vector2Int(0, -1)  // bottom
             // Add more directions if your grid allows diagonal movement
         };
 

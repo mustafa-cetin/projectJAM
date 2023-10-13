@@ -20,11 +20,10 @@ private void Awake()
 }
     public int electric = 100;
 
-    public int water = 100;
-
     public int food = 100;
 
     public int oxygen = 100;
+    public int metal=100;
 
 }
 

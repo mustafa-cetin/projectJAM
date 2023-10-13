@@ -9,7 +9,7 @@ public class RoomRequirement : ScriptableObject
     
 public int electric;
 
-public int water;
+public int metal;
 
 public int food;
 

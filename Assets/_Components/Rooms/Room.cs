@@ -5,4 +5,63 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
 
+    protected bool ready;
+    public RoomRequirement requirements;
+
+    protected int width=1;
+    protected int height=1;
+
+
+    protected float progress;
+    protected Color color;
+    public virtual void Start() {
+        ready=false;
+        progress=0f;
+        color=Color.black;
+    }
+    public virtual void Update(){
+        if (progress!=100f)
+        {
+            progress+=5*Time.deltaTime;
+            color=Color.HSVToRGB(0,0,progress/10);
+            GetComponent<SpriteRenderer>().color=color;
+        }
+    }
+    public bool IsBuildableTheTile(ShelterGrid shelterGrid,ShelterGridTile shelterGridTile){
+        bool flag=false;
+        if (shelterGridTile.GetPosition().y!=10)
+        {
+           
+        ShelterGridTile[] shelterGridLine=shelterGrid.GetGridTileLine(shelterGridTile.GetPosition().y+1);
+        foreach (var shelterGridTil in shelterGridLine)
+        {
+            if (shelterGridTil.IsOccupied)
+            {
+                
+            if (shelterGridTil.GetRoom().GetType()==GetType())
+            {
+                flag=true;
+                break;
+            }
+            
+            }
+        } 
+        }
+        
+        else
+        
+        {
+            flag=true;
+        }
+
+        if (flag)
+        {
+           return CheckValidation(shelterGrid,shelterGridTile);
+        }
+
+        return false;
+    }
+    public virtual bool CheckValidation(ShelterGrid shelterGrid,ShelterGridTile shelterGridTile){
+        return true;
+    }
 }

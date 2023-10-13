@@ -44,9 +44,38 @@ public class ShelterGrid : MonoBehaviour
         return GetShelterGridTile(GetGridTilePosition(worldPosition));
     }
     public ShelterGridTile GetShelterGridTile(Vector2Int gridPosition){
+        if (gridPosition.x>=0 && gridPosition.x<shelterGridSizeX && gridPosition.y>=0 && gridPosition.y<shelterGridSizeY)
+        {
         return shelterGrid[gridPosition.x,gridPosition.y];
+        }
+        return null;
     }
-    
+    public ShelterGridTile[] GetGridTileLine(int y){
+        ShelterGridTile[] shelterGridLine=new ShelterGridTile[shelterGridSizeX];
+        for (int x = 0; x < shelterGridSizeX; x++)
+        {
+            shelterGridLine[x]=shelterGrid[x,y];
+        }
+        return shelterGridLine;
+    }
+    public bool[,] GetBuildableAreaOnGrid(Room room){
+        bool[,] buildableArea=new bool[shelterGridSizeX,shelterGridSizeY];
+        
+        for (int x = 0; x < shelterGridSizeX; x++)
+        {
+            for (int y = 0; y < shelterGridSizeY; y++)
+            {
+                buildableArea[x,y]=room.IsBuildableTheTile(this,shelterGrid[x,y]);
+            }
+        }
+        
+
+
+        return buildableArea;
+    }
+
+
+
     public List<Vector2Int> GetNeighbors(Vector2Int cellPosition)
     {
         List<Vector2Int> neighbors = new List<Vector2Int>();
@@ -55,8 +84,8 @@ public class ShelterGrid : MonoBehaviour
         Vector2Int[] relativePositions = {
             new Vector2Int(-1, 0), // left
             new Vector2Int(1, 0),  // right
-            new Vector2Int(0, 1),  // top
-            new Vector2Int(0, -1)  // bottom
+            new Vector2Int(0, 1)  // top
+            //new Vector2Int(0, -1)  // bottom
             // Add more directions if your grid allows diagonal movement
         };
 

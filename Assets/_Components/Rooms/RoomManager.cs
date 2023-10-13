@@ -7,7 +7,7 @@ public class RoomManager : MonoBehaviour
     ShelterGrid shelterGrid;
 
 
-    Room selectedRoomType;
+    public Room SelectedRoomType{get;private set;}
     [SerializeField]
     Room oxygenRoom;
 
@@ -16,26 +16,26 @@ public class RoomManager : MonoBehaviour
     Room ladderRoom;
 
 
+    private BuildHelper buildHelper;
 
     
     void Start()
     {
+        buildHelper=GetComponent<BuildHelper>();
         shelterGrid=GetComponent<ShelterGrid>();
     }
     public void BuildRoom(ShelterGridTile tile){
-        if (!tile.IsOccupied
-         && CheckNeighboursIsOccupied(tile.GetPosition())
-          && selectedRoomType.IsBuildableTheTile(shelterGrid,tile)
-           && CanBuild(selectedRoomType.requirements))
+        if (buildHelper.CanBuild(tile))
         {
 
             tile.SetIsOccupied(true);
-            DecreaseRequirements(selectedRoomType.requirements);
+            AudioManager.Instance.PlayConstructionSound();
+            DecreaseRequirements(SelectedRoomType.requirements);
 
-            Room buildedRoom=Instantiate(selectedRoomType,transform);
+            Room buildedRoom=Instantiate(SelectedRoomType,transform);
             tile.SetRoom(buildedRoom);
             buildedRoom.transform.position=shelterGrid.GetWorldPosition(tile.GetPosition());
-            
+            buildHelper.ShowBuildablePlaces();
         }
 
 
@@ -52,7 +52,7 @@ public class RoomManager : MonoBehaviour
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
             if (shelterGrid.GetShelterGridTileWorldPosition(worldPosition)!=null)
             {
-                selectedRoomType=oxygenRoom;
+                SelectedRoomType=oxygenRoom;
                 BuildRoom(shelterGrid.GetShelterGridTileWorldPosition(worldPosition));
             }
             
@@ -64,21 +64,12 @@ public class RoomManager : MonoBehaviour
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
             if (shelterGrid.GetShelterGridTileWorldPosition(worldPosition)!=null)
             {
-                selectedRoomType=ladderRoom;
+                SelectedRoomType=ladderRoom;
                 BuildRoom(shelterGrid.GetShelterGridTileWorldPosition(worldPosition));
             }
         }
     }
 
-    public bool CanBuild(RoomRequirement roomRequirement){
-
-
-         return Shelter.Instance.food>=roomRequirement.food
-          && Shelter.Instance.electric>=roomRequirement.electric
-           && Shelter.Instance.metal>=roomRequirement.metal
-           && Shelter.Instance.oxygen>=roomRequirement.oxygen;
-        
-    }
 
     public void DecreaseRequirements(RoomRequirement roomRequirement){
         Shelter.Instance.electric-=roomRequirement.electric;

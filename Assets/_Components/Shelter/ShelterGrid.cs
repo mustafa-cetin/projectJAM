@@ -58,7 +58,24 @@ public class ShelterGrid : MonoBehaviour
         }
         return shelterGridLine;
     }
-    
+    public bool[,] GetBuildableAreaOnGrid(Room room){
+        bool[,] buildableArea=new bool[shelterGridSizeX,shelterGridSizeY];
+        
+        for (int x = 0; x < shelterGridSizeX; x++)
+        {
+            for (int y = 0; y < shelterGridSizeY; y++)
+            {
+                buildableArea[x,y]=room.IsBuildableTheTile(this,shelterGrid[x,y]);
+            }
+        }
+        
+
+
+        return buildableArea;
+    }
+
+
+
     public List<Vector2Int> GetNeighbors(Vector2Int cellPosition)
     {
         List<Vector2Int> neighbors = new List<Vector2Int>();

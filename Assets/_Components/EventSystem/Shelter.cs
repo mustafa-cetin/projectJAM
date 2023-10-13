@@ -25,4 +25,6 @@ private void Awake()
     public int food = 100;
 
     public int oxygen = 100;
+
 }
+

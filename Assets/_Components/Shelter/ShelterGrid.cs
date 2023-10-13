@@ -46,10 +46,17 @@ public class ShelterGrid : MonoBehaviour
     public ShelterGridTile GetShelterGridTile(Vector2Int gridPosition){
         if (gridPosition.x>=0 && gridPosition.x<shelterGridSizeX && gridPosition.y>=0 && gridPosition.y<shelterGridSizeY)
         {
-            
         return shelterGrid[gridPosition.x,gridPosition.y];
         }
         return null;
+    }
+    public ShelterGridTile[] GetGridTileLine(int y){
+        ShelterGridTile[] shelterGridLine=new ShelterGridTile[shelterGridSizeX];
+        for (int x = 0; x < shelterGridSizeX; x++)
+        {
+            shelterGridLine[x]=shelterGrid[x,y];
+        }
+        return shelterGridLine;
     }
     
     public List<Vector2Int> GetNeighbors(Vector2Int cellPosition)

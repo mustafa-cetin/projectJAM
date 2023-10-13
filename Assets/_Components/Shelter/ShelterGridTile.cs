@@ -10,6 +10,9 @@ public class ShelterGridTile
     private Room room;
     public bool IsOccupied{get;private set;}
 
+    public Room GetRoom(){
+        return room;
+    }
 
     public void SetIsOccupied(bool IsOccupied){
         this.IsOccupied=IsOccupied;

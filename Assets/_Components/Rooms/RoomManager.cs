@@ -31,7 +31,7 @@ public class RoomManager : MonoBehaviour
             Room buildedRoom=Instantiate(selectedRoomType,transform);
             tile.SetRoom(buildedRoom);
             buildedRoom.transform.position=shelterGrid.GetWorldPosition(tile.GetPosition());
-
+            
         }
 
 
@@ -99,7 +99,7 @@ public class RoomManager : MonoBehaviour
                 
             if (shelterGridTile.GetRoom().GetType()==ladderRoom.GetType())
             {
-                Debug.Log("ladder var kardeş");
+                
                 return true;
             }
             

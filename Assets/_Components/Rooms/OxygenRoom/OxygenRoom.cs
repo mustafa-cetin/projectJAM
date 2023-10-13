@@ -8,11 +8,13 @@ public class OxygenRoom : Room
     private float betweenTimeCount;
 
     private float timer;
-    private void Start() {
+    public override void Start() {
+        base.Start();
         timer=Time.time;
     }
-    private void Update() {
-        if (Time.time>=betweenTimeCount+timer && Shelter.Instance.electric>=5)
+    public override void Update() {
+        base.Update();
+        if (Time.time>=betweenTimeCount+timer && Shelter.Instance.electric>=5 && ready)
         {
             timer=Time.time;
             Shelter.Instance.oxygen+=5;

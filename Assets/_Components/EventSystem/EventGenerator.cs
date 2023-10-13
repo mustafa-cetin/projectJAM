@@ -18,7 +18,7 @@ public class EventGenerator : MonoBehaviour
     public TMP_Text button2Text;
 
     public void callRandomEvent(){
-        int randomEventNum = Random.Range(1,8);
+        int randomEventNum = Random.Range(0,7);
 
         Events currentEvents = EventsArray[randomEventNum];
 
@@ -28,6 +28,11 @@ public class EventGenerator : MonoBehaviour
 
         button2Text.text = currentEvents.EventChoices[1];
 
+        
+    }
+
+    public void madeEventAffects(){
+        
     }
 
     void Start(){

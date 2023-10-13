@@ -23,7 +23,10 @@ private void Awake()
     public int food = 100;
 
     public int oxygen = 100;
+    
     public int metal=100;
+
+    public int happiness = 100;
 
 }
 

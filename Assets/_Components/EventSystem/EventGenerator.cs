@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -104,6 +105,9 @@ public class EventGenerator : MonoBehaviour
         
         Choice1.SetActive(false);
         Choice2.SetActive(false);
+        
+        SceneManager.LoadScene(SceneController.GetSceneName());
+
     }
 
     public void Chosed2(){
@@ -111,6 +115,9 @@ public class EventGenerator : MonoBehaviour
         
         Choice1.SetActive(false);
         Choice2.SetActive(false);
+
+        SceneManager.LoadScene(SceneController.GetSceneName());
+
     }
     
     
@@ -196,9 +203,12 @@ public class EventGenerator : MonoBehaviour
     void Start(){
         int randomEventNum = Random.Range(1,7);
 
+        Debug.Log("execute edildi");
+
         callRandomEvent(randomEventNum);
 
         madeEventAffects(randomEventNum);
+
 
     
     }

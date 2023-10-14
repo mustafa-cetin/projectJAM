@@ -27,13 +27,6 @@ public class UIResourceManager : MonoBehaviour
         rebelSlider.value=Shelter.Instance.rebel;
     }
     public void NotifyElectric(int value){
-        foreach (var item in electricNotifyTexts)
-        {
-            if (item==null)
-            {
-                electricNotifyTexts.Remove(item);
-            }
-        }
         TMP_Text cloneNotify=Instantiate(notifyText,transform);
         electricNotifyTexts.Add(cloneNotify);
         cloneNotify.text=value.ToString();
@@ -42,13 +35,6 @@ public class UIResourceManager : MonoBehaviour
         cloneNotify.transform.position=position;
     }
     public void NotifyFood(int value){
-        foreach (var item in foodNotifyTexts)
-        {
-            if (item==null)
-            {
-                foodNotifyTexts.Remove(item);
-            }
-        }
         TMP_Text cloneNotify=Instantiate(notifyText,transform);
         foodNotifyTexts.Add(cloneNotify);
         cloneNotify.text=value.ToString();
@@ -58,13 +44,6 @@ public class UIResourceManager : MonoBehaviour
     }
     public void NotifyOxygen(int value){
         
-        foreach (var item in oxygenNotifyTexts)
-        {
-            if (item==null)
-            {
-                oxygenNotifyTexts.Remove(item);
-            }
-        }
         TMP_Text cloneNotify=Instantiate(notifyText,transform);
         oxygenNotifyTexts.Add(cloneNotify);
         cloneNotify.text=value.ToString();
@@ -73,14 +52,7 @@ public class UIResourceManager : MonoBehaviour
         cloneNotify.transform.position=position;
     }
     public void NotifyMetal(int value){
-        
-        foreach (var item in metalNotifyTexts)
-        {
-            if (item==null)
-            {
-                metalNotifyTexts.Remove(item);
-            }
-        }
+    
         TMP_Text cloneNotify=Instantiate(notifyText,transform);
         metalNotifyTexts.Add(cloneNotify);
         cloneNotify.text=value.ToString();

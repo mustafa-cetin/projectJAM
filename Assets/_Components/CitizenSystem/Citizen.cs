@@ -28,6 +28,7 @@ public class Citizen : MonoBehaviour
     private bool hasArrived = false; // Hedefe ulaşıldı mı?
 
     public Room currentRoom;
+    public GameObject selectIcon;
 
     int i=0;
     private Collider2D col;
@@ -35,6 +36,7 @@ public class Citizen : MonoBehaviour
         col=GetComponent<Collider2D>();
         targetPosition=new Vector3[1];
         targetPosition[0]=transform.position;
+        selectIcon.SetActive(false);
     }
 
     void Update()
@@ -47,6 +49,9 @@ public class Citizen : MonoBehaviour
         targetPosition=position;
         hasArrived=false;
 
+    }
+    public void ChangeSelectedValue(bool state){
+        selectIcon.SetActive(state);
     }
     void Move(){
 
@@ -62,6 +67,7 @@ public class Citizen : MonoBehaviour
 
             }else{
                 transform.position=targetPosition[i];
+                Shelter.Instance.electric-=10;
             }
 
             if (transform.position.x-targetPosition[i].x>=0)

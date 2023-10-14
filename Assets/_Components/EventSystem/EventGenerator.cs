@@ -246,6 +246,7 @@ public class EventGenerator : MonoBehaviour
     
     private void Update()
     {
+        /* 
         if(checkShelterStateLevels() != null){
 
             // Its calls event out of resource
@@ -255,7 +256,7 @@ public class EventGenerator : MonoBehaviour
         if(Shelter.Instance.rebel < 30){
             // Its calls event rebel started
             madeEventAffects(2);
-        }
+        } */
 
         if(!Canvas.activeInHierarchy){
             elapsedTime += Time.deltaTime;

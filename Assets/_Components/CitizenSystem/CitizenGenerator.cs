@@ -47,15 +47,24 @@ public class CitizenGenerator : MonoBehaviour
             if (hit.transform.CompareTag("Citizen"))
             {
                 Debug.Log("worked");
-            Citizen clickedCitizen=hit.transform.GetComponent<Citizen>();
+                Citizen clickedCitizen=hit.transform.GetComponent<Citizen>();
 
             if (clickedCitizen==selectedCitizen)
             {
+
                 Shelter.Instance.currentMode=Mode.None;
+                selectedCitizen.ChangeSelectedValue(false);
                 selectedCitizen=null;
             }else
             {
+                if (selectedCitizen!=null)
+                {
+                    selectedCitizen.ChangeSelectedValue(false);
+                }
+
                 selectedCitizen=clickedCitizen;
+            
+                selectedCitizen.ChangeSelectedValue(true);
                 Shelter.Instance.currentMode=Mode.Character;
             }
 
@@ -70,9 +79,9 @@ public class CitizenGenerator : MonoBehaviour
             Vector3 mousePosition = Input.mousePosition;
             mousePosition.z = Camera.main.nearClipPlane;
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            Room clickedRoom = roomManager.GetRoom(worldPosition);
-            if (clickedRoom!=null)
+            if (roomManager.GetRoom(worldPosition)!=null)
             {
+            Room clickedRoom = roomManager.GetRoom(worldPosition);
                 if (selectedCitizen.currentRoom!=null)
                 {
                     if (selectedCitizen.currentRoom.CompareTag("ResourceRoom"))
@@ -103,7 +112,7 @@ public class CitizenGenerator : MonoBehaviour
                 targetRoomPositions=new Vector3[]{new Vector3(targetRoomCoordinates.x,selectedCitizen.transform.position.y,selectedCitizen.transform.position.z)};
 
                 }else{
-
+                    if (Shelter.Instance.electric<=10) return;
                     // selected citizen go to own elevation ladder room
                     targetRoomPositions=new Vector3[3];
                     targetRoomPositions[0]=new Vector3(

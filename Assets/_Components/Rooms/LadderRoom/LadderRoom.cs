@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class LadderRoom : Room
 {
-    
-    public override void Start() {
-        base.Start();
-    }
-    public override void Update() {
-        base.Update();
-    }
     public override bool CheckValidation(ShelterGrid shelterGrid,ShelterGridTile shelterGridTile){
         ShelterGridTile[] gridLine=shelterGrid.GetGridTileLine(shelterGridTile.GetPosition().y);
         

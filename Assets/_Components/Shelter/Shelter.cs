@@ -30,7 +30,8 @@ public List<Citizen> citizens;
     
     public int metal=100;
 
-    public int rebel = 100;
+    [Range(0,100)]
+    public int rebel = 0;
 
     public string State = "Standart";
 
@@ -39,6 +40,7 @@ public List<Citizen> citizens;
     {
         None,
         Build,
-        Character
+        Character,
+        RoomEdit
     }
 

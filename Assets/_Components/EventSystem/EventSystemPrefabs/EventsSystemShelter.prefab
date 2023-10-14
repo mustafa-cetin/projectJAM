@@ -44,17 +44,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 118e639cfff699242a9630cf6892c5ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  positionOfImage: {x: 0, y: 0}
+  eventBackground: {fileID: 0}
   EventsArray:
   - {fileID: 11400000, guid: 65332fa186c9d9741891797cbf2cf05b, type: 2}
   - {fileID: 11400000, guid: f85e309c7326fc84b85f46ff800e7781, type: 2}
-  - {fileID: 11400000, guid: efd0ced9c129ec5469ae36c48f4e3b14, type: 2}
   - {fileID: 11400000, guid: 4bc4b87d4fd5cde4a94001a4e013bdb7, type: 2}
-  - {fileID: 11400000, guid: 8cbafb6814975664293fa0e5e8c2a5b4, type: 2}
-  - {fileID: 11400000, guid: 7aa035f0e8a98c54aa03de8e39259b44, type: 2}
   - {fileID: 11400000, guid: a5132a8c25b68524eb1001bc7708dd98, type: 2}
+  - {fileID: 11400000, guid: 7aa035f0e8a98c54aa03de8e39259b44, type: 2}
   mainText: {fileID: 0}
   button1Text: {fileID: 0}
   button2Text: {fileID: 0}
   choiceMade: 0
   Choice1: {fileID: 0}
   Choice2: {fileID: 0}
+  Canvas: {fileID: 0}
+  minTime: 10
+  maxTime: 30
+  nextEventTime: 0
+  elapsedTime: 0

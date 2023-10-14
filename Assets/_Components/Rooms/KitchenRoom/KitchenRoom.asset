@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51e3edd9b709b1d4c9778b162a9321e1, type: 3}
-  m_Name: LadderRoomRequirement
+  m_Name: KitchenRoom
   m_EditorClassIdentifier: 
-  electric: 0
-  metal: 20
-  food: 0
+  electric: 5
+  metal: 0
+  food: 5
   oxygen: 0

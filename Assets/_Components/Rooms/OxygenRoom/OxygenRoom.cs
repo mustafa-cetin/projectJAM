@@ -21,6 +21,7 @@ public class OxygenRoom : ResourceRoom
             timer=Time.time;
             Shelter.Instance.oxygen+=Random.Range(1,Worker.endurance);
             Shelter.Instance.electric-=1;
+            Shelter.Instance.food-=1;
         }
         }
     }

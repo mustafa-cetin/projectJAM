@@ -21,7 +21,6 @@ public class LadderRoom : Room
                 
             if (gridTile.GetRoom().CompareTag("LadderRoom"))
             {
-                Debug.Log("AYNI SATIRDA ZATEN MEVCUT");
                 return false;
             }
             

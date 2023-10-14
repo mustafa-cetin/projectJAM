@@ -25,6 +25,9 @@ public class RoomManager : MonoBehaviour
         shelterGrid=GetComponent<ShelterGrid>();
         SelectedRoomType=ladderRoom;
     }
+    public void SetSelectedRoomType(Room room){
+        SelectedRoomType=room;
+    }
     public void BuildRoom(ShelterGridTile tile){
         if (buildHelper.CanBuild(tile))
         {
@@ -36,7 +39,10 @@ public class RoomManager : MonoBehaviour
             Room buildedRoom=Instantiate(SelectedRoomType,transform);
             tile.SetRoom(buildedRoom);
             buildedRoom.transform.position=shelterGrid.GetWorldPosition(tile.GetPosition());
-            buildHelper.ShowBuildablePlaces();
+            if (buildHelper.BuildMode)
+            {
+                buildHelper.ShowBuildablePlaces();
+            }
         }
 
 
@@ -45,30 +51,6 @@ public class RoomManager : MonoBehaviour
     void Update()
     {
         
-        if (Input.GetMouseButtonDown(0))
-        {
-
-            Vector3 mousePosition = Input.mousePosition;
-            mousePosition.z = Camera.main.nearClipPlane;
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            if (shelterGrid.GetShelterGridTileWorldPosition(worldPosition)!=null)
-            {
-                SelectedRoomType=oxygenRoom;
-                BuildRoom(shelterGrid.GetShelterGridTileWorldPosition(worldPosition));
-            }
-            
-        }else if (Input.GetMouseButtonDown(1))
-        {
-            
-            Vector3 mousePosition = Input.mousePosition;
-            mousePosition.z = Camera.main.nearClipPlane;
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            if (shelterGrid.GetShelterGridTileWorldPosition(worldPosition)!=null)
-            {
-                SelectedRoomType=ladderRoom;
-                BuildRoom(shelterGrid.GetShelterGridTileWorldPosition(worldPosition));
-            }
-        }
     }
 
 
@@ -95,7 +77,7 @@ public class RoomManager : MonoBehaviour
 
     public bool CheckNeighboursIsOccupied(Vector2Int position){
         
-        if (position.y==10)
+        if (position.y==10 && position.x==0)
         {
             return true;
         }

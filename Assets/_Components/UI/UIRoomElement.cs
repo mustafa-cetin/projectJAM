@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class UIRoomElement : MonoBehaviour
 {
-    [SerializeField]
-    Room room;
+    public Room room;
 
 }

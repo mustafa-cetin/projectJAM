@@ -20,16 +20,25 @@ public class BuildHelper : MonoBehaviour
     {
         shelterGrid=GetComponent<ShelterGrid>();
         roomManager=GetComponent<RoomManager>();
-        BuildMode=true;
         references=new List<Transform>();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetMouseButtonDown(0) && BuildMode && roomManager.SelectedRoomType!=null)
         {
-            ShowBuildablePlaces();
+
+            Vector3 mousePosition = Input.mousePosition;
+            mousePosition.z = Camera.main.nearClipPlane;
+            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            if (shelterGrid.GetShelterGridTileWorldPosition(worldPosition)!=null)
+            {
+                roomManager.BuildRoom(shelterGrid.GetShelterGridTileWorldPosition(worldPosition));
+            }
         }
+    }
+    public void SetSelectedRoom(Room room){
+        roomManager.SetSelectedRoomType(room);
     }
     public bool CanBuild(ShelterGridTile tile){
         return !tile.IsOccupied
@@ -70,5 +79,10 @@ public class BuildHelper : MonoBehaviour
     }
     public void SetBuildMode(bool state){
         BuildMode=state;
+        if (!state){
+            RemoveReferences();
+        }else{
+            roomManager.SetSelectedRoomType(null);
+        }
     }
 }

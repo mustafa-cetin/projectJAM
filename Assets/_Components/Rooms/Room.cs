@@ -31,7 +31,7 @@ public class Room : MonoBehaviour
     }
     public bool IsBuildableTheTile(ShelterGrid shelterGrid,ShelterGridTile shelterGridTile){
         bool flag=false;
-        if (shelterGridTile.GetPosition().y!=10)
+        if (shelterGridTile.GetPosition().y!=10 && shelterGridTile.GetPosition().x!=0)
         {
            
         ShelterGridTile[] shelterGridLine=shelterGrid.GetGridTileLine(shelterGridTile.GetPosition().y+1);
@@ -40,7 +40,7 @@ public class Room : MonoBehaviour
             if (shelterGridTil.IsOccupied)
             {
                 
-            if (shelterGridTil.GetRoom().GetType()==GetType())
+            if (shelterGridTil.GetRoom().CompareTag("LadderRoom"))
             {
                 flag=true;
                 break;

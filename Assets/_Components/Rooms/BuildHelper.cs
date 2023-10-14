@@ -7,7 +7,6 @@ public class BuildHelper : MonoBehaviour
 {
     ShelterGrid shelterGrid;
     RoomManager roomManager;
-    public bool BuildMode{get;private set;}
 
     [SerializeField]
     Transform referencePrefab;
@@ -30,8 +29,6 @@ public class BuildHelper : MonoBehaviour
         {
             if (!EventSystem.current.IsPointerOverGameObject()) // Eğer UI üzerinde tıklama yoksa devam et
             {
-                // Oyun dünyası üzerinde bir şey yap
-
             Vector3 mousePosition = Input.mousePosition;
             mousePosition.z = Camera.main.nearClipPlane;
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);

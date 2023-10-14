@@ -31,7 +31,7 @@ public class Room : MonoBehaviour
     }
     public bool IsBuildableTheTile(ShelterGrid shelterGrid,ShelterGridTile shelterGridTile){
         bool flag=false;
-        if (shelterGridTile.GetPosition().y!=10 && shelterGridTile.GetPosition().x!=0)
+        if (shelterGridTile.GetPosition().y!=shelterGrid.GetShelterGridSizeY()-1 && shelterGridTile.GetPosition().x!=0)
         {
            
         ShelterGridTile[] shelterGridLine=shelterGrid.GetGridTileLine(shelterGridTile.GetPosition().y+1);
@@ -60,7 +60,7 @@ public class Room : MonoBehaviour
         {
            return CheckValidation(shelterGrid,shelterGridTile);
         }
-        
+    
         return false;
     }
     public virtual bool CheckValidation(ShelterGrid shelterGrid,ShelterGridTile shelterGridTile){

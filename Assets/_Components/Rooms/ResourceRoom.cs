@@ -6,12 +6,14 @@ public class ResourceRoom : Room
 {
     public int level;
     public Sprite[] levelSprites;
+    public RoomRequirement[] roomRequirementsByLevel;
     public Citizen Worker{get;private set;}
 
     public void SetWorker(Citizen worker){
         Worker=worker;
     }
-    private void Start() {
+    public override void Start() {
+        base.Start();
         level=0;
     }
     public void UpdateRoom(){

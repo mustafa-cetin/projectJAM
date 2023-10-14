@@ -117893,8 +117893,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93df83feafd6231478ce5999829eddbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oxygenRoom: {fileID: 8511162991763767673, guid: dbb0ab7bf67598a419361d92e537c234, type: 3}
-  ladderRoom: {fileID: 2835475816700343767, guid: cc8e079bdfd673c438cb54e3cc83da3d, type: 3}
 --- !u!114 &1009155730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118417,8 +118415,9 @@ MonoBehaviour:
   food: 100
   oxygen: 100
   metal: 100
-  rebel: 100
+  rebel: 0
   State: Standart
+  planetTerraforming: 0
 --- !u!4 &1189239033
 Transform:
   m_ObjectHideFlags: 0

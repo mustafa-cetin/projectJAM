@@ -35,12 +35,16 @@ public List<Citizen> citizens;
 
     public string State = "Standart";
 
+
+    public int planetTerraforming;
+
 }
     public enum Mode
     {
         None,
         Build,
         Character,
-        RoomEdit
+        RoomEdit,
+        TerraformPanel
     }
 

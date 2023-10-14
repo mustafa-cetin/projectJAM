@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class RoomManager : MonoBehaviour
 {
@@ -8,15 +9,12 @@ public class RoomManager : MonoBehaviour
 
 
     public Room SelectedRoomType{get;private set;}
-    [SerializeField]
-    Room oxygenRoom;
-
-    
-    [SerializeField]
-    Room ladderRoom;
 
 
     private BuildHelper buildHelper;
+
+
+    
 
     public Vector3 GetRoomCoordinates(Vector3 position){
         return shelterGrid.GetWorldPosition(shelterGrid.GetGridTilePosition(position));
@@ -46,7 +44,6 @@ public class RoomManager : MonoBehaviour
     {
         buildHelper=GetComponent<BuildHelper>();
         shelterGrid=GetComponent<ShelterGrid>();
-        SelectedRoomType=ladderRoom;
     }
     public void SetSelectedRoomType(Room room){
         SelectedRoomType=room;
@@ -54,7 +51,8 @@ public class RoomManager : MonoBehaviour
     public void BuildRoom(ShelterGridTile tile){
         if (buildHelper.CanBuild(tile))
         {
-
+            
+            Debug.Log("selected");
             tile.SetIsOccupied(true);
             AudioManager.Instance.PlayConstructionSound();
             DecreaseRequirements(SelectedRoomType.requirements);
@@ -73,7 +71,31 @@ public class RoomManager : MonoBehaviour
 
     void Update()
     {
-        
+        /*
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (!EventSystem.current.IsPointerOverGameObject()) // Eğer UI üzerinde tıklama yoksa devam et
+            {
+                if (Shelter.Instance.currentMode!=Mode.None && Shelter.Instance.currentMode!=Mode.RoomEdit) return;
+                Vector3 mousePosition = Input.mousePosition;
+            mousePosition.z = Camera.main.nearClipPlane;
+            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            if (GetRoom(worldPosition)!=null)
+            {
+                Room clickedRoom = GetRoom(worldPosition);
+                if (true)
+                {
+                    
+                }
+            
+            }
+
+
+
+            
+            }
+        }
+        */
     }
 
 
@@ -100,7 +122,7 @@ public class RoomManager : MonoBehaviour
 
     public bool CheckNeighboursIsOccupied(Vector2Int position){
         
-        if (position.y==10 && position.x==0)
+        if (position.y==shelterGrid.GetShelterGridSizeY()-1 && position.x==0)
         {
             return true;
         }

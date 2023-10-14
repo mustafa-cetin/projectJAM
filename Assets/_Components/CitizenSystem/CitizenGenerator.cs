@@ -16,7 +16,7 @@ public class CitizenGenerator : MonoBehaviour
 
     
 
-    private void defineCitizen(){
+    public void defineCitizen(){
 
         Citizen citizen = Instantiate(citizenObject);
         

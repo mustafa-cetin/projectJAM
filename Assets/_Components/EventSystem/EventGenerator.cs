@@ -9,8 +9,6 @@ using UnityEngine.UI;
 
 public class EventGenerator : MonoBehaviour
 {
-    public Vector2 positionOfImage;
-
     public Image eventBackground;
 
     public Events[] EventsArray;
@@ -20,6 +18,8 @@ public class EventGenerator : MonoBehaviour
     public TMP_Text button1Text;
 
     public TMP_Text button2Text;
+
+    public CitizenGenerator citizenGenerator;
 
     public int choiceMade = 1;
     public void callRandomEvent(int randomEventNum){
@@ -141,6 +141,12 @@ public class EventGenerator : MonoBehaviour
                 if(choiceMade == 1){
                     increaseFood(30);
                     increaseMetal(40);
+
+                    for(int i=0;i<3;i++){
+                        citizenGenerator.defineCitizen();
+                    }
+                    
+
 
                     prob = chance50();
 
@@ -292,7 +298,6 @@ public class EventGenerator : MonoBehaviour
 
         if (elapsedTime >= nextEventTime && !Canvas.activeInHierarchy)
         {
-                    Debug.Log("Vexe . "+ choiceMade);
 
             eventNum+=1;
             executeEvent();

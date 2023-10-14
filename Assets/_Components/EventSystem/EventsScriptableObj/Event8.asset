@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8303cffdda1ccff42abbdca089779e33, type: 3}
   m_Name: Event8
   m_EditorClassIdentifier: 
-  EventTitle: 
-  Event: 
+  EventTitle: Peoples Arguing
+  Event: ' Those who work in electricity and water production are fighting, whose
+    side will you be on?'
   EventChoices:
-  - 
-  - 
+  - Electricians
+  - Water Workers
   Background: {fileID: 0}

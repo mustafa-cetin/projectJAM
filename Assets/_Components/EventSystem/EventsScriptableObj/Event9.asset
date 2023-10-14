@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8303cffdda1ccff42abbdca089779e33, type: 3}
   m_Name: Event9
   m_EditorClassIdentifier: 
-  EventTitle: E
-  Event: 
+  EventTitle: Attack on Shelter
+  Event: A large group came to attack the shelter
   EventChoices:
-  - 
-  - 
+  - Defend yourself
+  - Try Giving Food
   Background: {fileID: 0}

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8303cffdda1ccff42abbdca089779e33, type: 3}
   m_Name: Event7
   m_EditorClassIdentifier: 
-  EventTitle: 
-  Event: 
+  EventTitle: Hole in tank
+  Event: A hole was opened in the oxygen tank
   EventChoices:
-  - 
-  - 
+  - Send peoples to close hole(Probably y
+  - Oxygen consumption increased by 10
   Background: {fileID: 0}

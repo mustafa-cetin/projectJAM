@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8303cffdda1ccff42abbdca089779e33, type: 3}
   m_Name: Event10
   m_EditorClassIdentifier: 
-  EventTitle: 
-  Event: 
+  EventTitle: Attack other Shelters
+  Event: Try Attack for Food, Water, Energy
   EventChoices:
-  - 
-  - 
+  - Attack them gain sources
+  - Focus production
   Background: {fileID: 0}

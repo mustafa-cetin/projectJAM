@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8303cffdda1ccff42abbdca089779e33, type: 3}
   m_Name: Event6
   m_EditorClassIdentifier: 
-  EventTitle: 
-  Event: 
+  EventTitle: Out Of Foods
+  Event: 'Food stocks are running out '
   EventChoices:
-  - 
-  - 
+  - put sawdust to increase food amount
+  - sacrifice your own luxury
   Background: {fileID: 0}

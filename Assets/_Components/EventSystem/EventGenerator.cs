@@ -98,26 +98,18 @@ public class EventGenerator : MonoBehaviour
     public GameObject Choice1;
     public GameObject Choice2;
 
-
+    public GameObject Canvas;
 
     public void Chosed1(){
         choiceMade = 1;
         
-        Choice1.SetActive(false);
-        Choice2.SetActive(false);
-        
-        SceneManager.LoadScene(SceneController.GetSceneName());
-
+        Canvas.SetActive(false);
     }
 
     public void Chosed2(){
         choiceMade = 2; 
-        
-        Choice1.SetActive(false);
-        Choice2.SetActive(false);
 
-        SceneManager.LoadScene(SceneController.GetSceneName());
-
+        Canvas.SetActive(false);
     }
     
     
@@ -199,22 +191,56 @@ public class EventGenerator : MonoBehaviour
         } 
         
     }
+    
+    int randomEventNum;
 
-    void Start(){
-        int randomEventNum = Random.Range(1,7);
+    public float minTime = 10.0f;
+    public float maxTime = 30.0f;
+    public float nextEventTime;
+    public float elapsedTime;
 
-        Debug.Log("execute edildi");
+    //public GameObject Canvas;
+    private void Start()
+    {
+        nextEventTime = FindTimeRange();
+        elapsedTime = 0f;
+    }
+    
+    private void Update()
+    {
+        if(!Canvas.activeInHierarchy){
+            elapsedTime += Time.deltaTime;
+        }
+
+        if (elapsedTime >= nextEventTime && !Canvas.activeInHierarchy)
+        {
+            
+            executeEvent();
+            nextEventTime = FindTimeRange();
+            elapsedTime = 0f;
+        }
+        
+    }
+
+    private float FindTimeRange()
+    {
+        return Random.Range(minTime, maxTime);
+    }
+    
+    public void executeEvent()
+    {
+        randomEventNum = Random.Range(1,7);
+
+        Debug.Log(randomEventNum);
 
         callRandomEvent(randomEventNum);
 
         madeEventAffects(randomEventNum);
-
-
-    
+        
+        Canvas.SetActive(true);
+        
     }
     
-    
-
 
 
 

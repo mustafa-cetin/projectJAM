@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class CitizenGenerator : ScriptableObject
 {
-    Citizen[] citizens;
+    public Citizen[] citizens;
 
 }

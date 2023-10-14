@@ -28,5 +28,6 @@ private void Awake()
 
     public int happiness = 100;
 
+    public string State = "Standart";
 }
 

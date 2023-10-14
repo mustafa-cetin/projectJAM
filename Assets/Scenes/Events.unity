@@ -185,7 +185,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 79006043}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2051530814}
+        m_TargetAssemblyTypeName: EventGenerator, Assembly-CSharp
+        m_MethodName: Chosed2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &79006043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -566,7 +578,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 546805744}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2051530814}
+        m_TargetAssemblyTypeName: EventGenerator, Assembly-CSharp
+        m_MethodName: Chosed1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &772687546
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,6 +1171,9 @@ MonoBehaviour:
   mainText: {fileID: 1704254924}
   button1Text: {fileID: 955208048}
   button2Text: {fileID: 266679190}
+  choiceMade: 0
+  Choice1: {fileID: 546805742}
+  Choice2: {fileID: 79006041}
 --- !u!4 &2051530815
 Transform:
   m_ObjectHideFlags: 0

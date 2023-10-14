@@ -5,7 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - LadderRoom
-  - BuildingRoom
+  - Citizen
+  - ResourceRoom
   layers:
   - Default
   - TransparentFX
@@ -51,4 +52,7 @@ TagManager:
     locked: 0
   - name: ground
     uniqueID: 2809226051
+    locked: 0
+  - name: character
+    uniqueID: 2662215009
     locked: 0

@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5115287419217845391}
   - component: {fileID: 1022999614140057150}
-  - component: {fileID: 4999293503041795152}
+  - component: {fileID: 3296860672152792612}
   m_Layer: 0
-  m_Name: MetalworksRoom
+  m_Name: ElectricRoom 1
   m_TagString: ResourceRoom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 4774051910337548197}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.87, y: 3.12, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.42, y: 1.42, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 1863668975
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a0d2eae7eab12534e8ea54ca26cc7bb9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9233fdf054d0c2347be8aa5f478d32d1, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4999293503041795152
+--- !u!114 &3296860672152792612
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,8 +94,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 4774051910337548197}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3954ccac928b3343850f1dee5ce0c99, type: 3}
+  m_Script: {fileID: 11500000, guid: b660e90ce4c74e94d8c3a83f56b28182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requirements: {fileID: 11400000, guid: 38e51b4b4bcefbd4cab58901927fde41, type: 2}
+  requirements: {fileID: 11400000, guid: 7f98658a5b919d6458b174151342fa7f, type: 2}
   betweenTimeCount: 5

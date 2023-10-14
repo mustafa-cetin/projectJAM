@@ -1,13 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CitizenGenerator : MonoBehaviour
 {
 
+    public RoomManager roomManager;
+
     public Citizen citizenObject;
+
+
+    public Citizen selectedCitizen;
+
+
     
-    public List<Citizen> citizens;
 
     private void defineCitizen(){
 
@@ -20,10 +27,112 @@ public class CitizenGenerator : MonoBehaviour
         citizen.cooking = Random.Range(1,11);
         citizen.endurance = Random.Range(1,11);
         
-        citizens.Add(citizen);
+        Shelter.Instance.citizens.Add(citizen);
 
     }
+    private void  Update() {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (!EventSystem.current.IsPointerOverGameObject()) // Eğer UI üzerinde tıklama yoksa devam et
+            {
+             
 
+
+        if (Shelter.Instance.currentMode!=Mode.None && Shelter.Instance.currentMode!=Mode.Character) return;
+
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+        
+        if(hit.collider != null)
+        {
+            if (hit.transform.CompareTag("Citizen"))
+            {
+                Debug.Log("worked");
+            Citizen clickedCitizen=hit.transform.GetComponent<Citizen>();
+
+            if (clickedCitizen==selectedCitizen)
+            {
+                Shelter.Instance.currentMode=Mode.None;
+                selectedCitizen=null;
+            }else
+            {
+                selectedCitizen=clickedCitizen;
+                Shelter.Instance.currentMode=Mode.Character;
+            }
+
+            }
+            else
+            {
+                
+                
+            }
+        }else if(Shelter.Instance.currentMode==Mode.Character)
+        {
+            Vector3 mousePosition = Input.mousePosition;
+            mousePosition.z = Camera.main.nearClipPlane;
+            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            Room clickedRoom = roomManager.GetRoom(worldPosition);
+            if (clickedRoom!=null)
+            {
+                if (selectedCitizen.currentRoom!=null)
+                {
+                    if (selectedCitizen.currentRoom.CompareTag("ResourceRoom"))
+                    {
+                        selectedCitizen.currentRoom.GetComponent<ResourceRoom>().SetWorker(null);
+                    }
+                }
+                
+
+
+                if (clickedRoom.CompareTag("ResourceRoom"))
+                {
+                    if (clickedRoom.GetComponent<ResourceRoom>().Worker!=null)
+                    {
+                        return;
+                    }else{
+                        clickedRoom.GetComponent<ResourceRoom>().SetWorker(selectedCitizen);
+                    }
+                }
+
+                Vector3 targetRoomCoordinates=roomManager.GetRoomCoordinates(worldPosition);
+                Vector3[] targetRoomPositions;
+
+                if (roomManager.GetElevation(targetRoomCoordinates)==roomManager.GetElevation(selectedCitizen.transform.position))
+                {
+
+                    //DIRECTLY GO ROOM
+                targetRoomPositions=new Vector3[]{new Vector3(targetRoomCoordinates.x,selectedCitizen.transform.position.y,selectedCitizen.transform.position.z)};
+
+                }else{
+
+                    // selected citizen go to own elevation ladder room
+                    targetRoomPositions=new Vector3[3];
+                    targetRoomPositions[0]=new Vector3(
+                        roomManager.GetLadderRoomCoordinatesByY(roomManager.GetElevation(selectedCitizen.transform.position)).x,
+                        selectedCitizen.transform.position.y,
+                        selectedCitizen.transform.position.z);
+                    // teleport
+                    targetRoomPositions[1]=new Vector3(roomManager.GetLadderRoomCoordinatesByY(roomManager.GetElevation(targetRoomCoordinates)).x,
+                    roomManager.GetLadderRoomCoordinatesByY(roomManager.GetElevation(targetRoomCoordinates)).y-1.5f,
+                    selectedCitizen.transform.position.z);
+                    // directly go room
+                    
+                    targetRoomPositions[2]=new Vector3(targetRoomCoordinates.x,
+                    targetRoomCoordinates.y-1.5f,
+                    selectedCitizen.transform.position.z);
+
+                }
+                    selectedCitizen.SetTargetPosition(targetRoomPositions);
+                     selectedCitizen.currentRoom=clickedRoom;
+            }
+        }
+
+
+
+   // Oyun dünyası üzerinde bir şey yap
+            }
+
+        }
+    }
 
     private string[] names = { "John", "Jane", "Bob", "Lisa", "Mike", "Anna", "Alex", "Ella", "Paul", "Mara" };
 
@@ -42,7 +151,7 @@ public class CitizenGenerator : MonoBehaviour
     }
 
     void Start(){
-        for(int i=0;i<5;i++){
+        for(int i=0;i<4;i++){
             defineCitizen();
         }
     }

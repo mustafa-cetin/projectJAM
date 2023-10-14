@@ -60,7 +60,7 @@ public class Room : MonoBehaviour
         {
            return CheckValidation(shelterGrid,shelterGridTile);
         }
-
+        
         return false;
     }
     public virtual bool CheckValidation(ShelterGrid shelterGrid,ShelterGridTile shelterGridTile){

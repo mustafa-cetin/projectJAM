@@ -15,7 +15,9 @@ public class UIBuildManager : MonoBehaviour
     }
 
     public void SwitchBuildMode(){
-        if (buildHelper.BuildMode)
+        if (Shelter.Instance.currentMode!=Mode.None && Shelter.Instance.currentMode!=Mode.Build) return;
+
+        if (Shelter.Instance.currentMode==Mode.Build)
         {
             buildHelper.SetBuildMode(false);
             roomsPanel.SetActive(false);
@@ -26,7 +28,7 @@ public class UIBuildManager : MonoBehaviour
     }
 
     public void SetSelectedRoom(UIRoomElement roomElement){
-        if (buildHelper.BuildMode)
+        if (Shelter.Instance.currentMode==Mode.Build)
         {
         buildHelper.RemoveReferences();
         buildHelper.SetSelectedRoom(roomElement.room);

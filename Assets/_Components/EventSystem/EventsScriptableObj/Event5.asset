@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8303cffdda1ccff42abbdca089779e33, type: 3}
   m_Name: Event5
   m_EditorClassIdentifier: 
-  EventTitle: Resource Discovery
-  Event: Scouts discover a hidden cache of valuable resources in the wilderness.
+  EventTitle: Moral Dilemma
+  Event: A desperate mother pleads with you to allow her child to work in dangerous
+    conditions to help her family.
   EventChoices:
-  - Extract the resources immediately
-  - Set up a more efficient operation
+  - Allow the child to work
+  - Refuse and provide support to the family
+  Background: {fileID: 21300000, guid: ffdcb303a0edf094eadcbb72a1e34435, type: 3}

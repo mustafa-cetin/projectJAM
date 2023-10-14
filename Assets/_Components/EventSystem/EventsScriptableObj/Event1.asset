@@ -18,3 +18,4 @@ MonoBehaviour:
   EventChoices:
   - Implement rationing
   - Send scouts to search for resources
+  Background: {fileID: 21300000, guid: ac016f36d47f9ff47b5fc92b4c08e8e9, type: 3}

@@ -9,6 +9,9 @@ using UnityEngine.UI;
 
 public class EventGenerator : MonoBehaviour
 {
+    public Vector2 positionOfImage;
+
+    public Image eventBackground;
 
     public Events[] EventsArray;
 
@@ -23,6 +26,10 @@ public class EventGenerator : MonoBehaviour
 
         Events currentEvents = EventsArray[randomEventNum];
 
+        Sprite currentSprite = EventsArray[randomEventNum].Background;
+        
+        eventBackground.sprite = currentSprite;
+
         mainText.text = currentEvents.Event;
 
         button1Text.text = currentEvents.EventChoices[0];
@@ -31,27 +38,25 @@ public class EventGenerator : MonoBehaviour
 
         
     }
-    void checkShelterStateLevels(){
-        if(Shelter.Instance.happiness < 30){
-            Shelter.Instance.State = "Unhappy";
-        }
+    string checkShelterStateLevels(){
         if(Shelter.Instance.electric < 30){
-            Shelter.Instance.State = "PowerOutage";
+            return "Electric";
         }
         if(Shelter.Instance.food < 30){
-            Shelter.Instance.State = "Hungry";
+            return "Food";
         }
         if(Shelter.Instance.oxygen < 30){
-            Shelter.Instance.State = "DeprivedOxygen";
+            return "Oxygen";
         }
+        else{ return null;}
     }
 
-    void increaseHapp(int number){
-        Shelter.Instance.happiness += number;
+    void increaseRebel(int number){
+        Shelter.Instance.rebel += number;
     }
 
-    void decreaseHapp(int number){
-        Shelter.Instance.happiness -= number;
+    void decreaseRebel(int number){
+        Shelter.Instance.rebel -= number;
     }
     void increaseFood(int number){
         Shelter.Instance.food += number;
@@ -114,77 +119,110 @@ public class EventGenerator : MonoBehaviour
     
     
     public void madeEventAffects(int eventNum){
+        int prob = chance50();
+
         switch (eventNum)
         {
             case 0:
-                Debug.Log("Event 0 is executed");
-                if(choiceMade == 1){
-
+                Debug.Log("Resources out of" + checkShelterStateLevels());
+                if(choiceMade == 0){
+                    //rastgele adam seç gönder
                 }
-                else if(choiceMade == 2){
+                else if(choiceMade == 1){
 
                 }
                 
 
                 break;
             case 1:
-                Debug.Log("Event 1 is executed");
-                if(choiceMade == 1){
-                    Debug.Log("Welcome them with open arms");
+                Debug.Log("New peoples arrived");
+                if(choiceMade == 0){
+                    Debug.Log("yemek ve metal arttı");
                     increaseFood(30);
                     increaseMetal(40);
 
-                    int prob = chance50();
+                    prob = chance50();
 
                     if(prob == 1){
-                        increaseHapp(40);
+                        increaseRebel(40);
+                        Debug.Log("mutluluk arttı");
+
                     }
                     else if(prob == 0){
-                        decreaseHapp(40);
+                        decreaseRebel(40);
+                        Debug.Log("mutluluk azaldı");
+
                     }
                 }
-                else if(choiceMade == 2){
-                    Debug.Log("Turn them away(Nothing Happens)");
-
-                }
+                
                 break;
             case 2:
-                Debug.Log("Event 2 is executed");
-                // After Citizens
+            
+                Debug.Log("Rebel var");
+                
+                if(choiceMade == 0){
+                    Debug.Log("choiceMade yapıldı");
+                    decreaseRebel(Shelter.Instance.rebel/2);
+                    decreaseMetal(30);
+                    decreaseFood(30);
+                    
+                }
+                if(choiceMade == 1){
+                    prob = chance50();
+                    
+                    if(prob == 1){
+                        decreaseRebel(Shelter.Instance.rebel);
+                        Debug.Log("rebel sıfırlandı");
+
+                    }
+                    else if(prob == 0){
+                        increaseRebel(40);
+                        Debug.Log("rebel arttı");
+
+                    }
+                }
+
+                
+
+
                 break;
             case 3:
                 Debug.Log("Event 3 is executed");
-                // Mutluluk azalırsa case
+
+                // drain boşalt reebel
+                if(choiceMade == 1){
+                                    Debug.Log("metal azaldı rebel");
+
+                    decreaseMetal(30);
+                }
+                else if(choiceMade == 0){
+                                    Debug.Log("rebel arttı rebel");
+
+                    increaseRebel(30);
+                }
+
                 break;
             case 4:
                 Debug.Log("Event 4 is executed");
-                //citizen scout system
-                break;
-            case 5:
-                Debug.Log("Event 5 is executed");
+                // anne çocuğunu gönderiyor
                 if(choiceMade == 1){
-                    decreaseHapp(30);
-                    increaseElec(10);
+                                    Debug.Log("çocuk gitti");
+                    increaseRebel(20);
                     increaseMetal(20);
+                    increaseElec(20);
+                    increaseFood(20);
+
+                    
                 }
-                else if(choiceMade == 2){
-                    decreaseFood(20);
-                    increaseHapp(30);
+                if(choiceMade == 0){
+                                    Debug.Log("çocuk kaldı");
+
+                    decreaseOxygen(40);
+                    
                 }
+                
                 break;
-            case 6:
-                Debug.Log("Event 6 is executed");
-                if(choiceMade == 1){
-                    decreaseHapp(30);
-                }
-                else if(choiceMade == 2){
-                    increaseHapp(30);
-                    increaseOxygen(20);
-                    decreaseMetal(30);
-                    decreaseFood(20);
-                    decreaseElec(10);
-                }
-                break;
+            
             default:
                 Debug.Log("Default case is executed");
                 break;
@@ -208,6 +246,17 @@ public class EventGenerator : MonoBehaviour
     
     private void Update()
     {
+        if(checkShelterStateLevels() != null){
+
+            // Its calls event out of resource
+            madeEventAffects(0);
+        }
+
+        if(Shelter.Instance.rebel < 30){
+            // Its calls event rebel started
+            madeEventAffects(2);
+        }
+
         if(!Canvas.activeInHierarchy){
             elapsedTime += Time.deltaTime;
         }
@@ -229,9 +278,7 @@ public class EventGenerator : MonoBehaviour
     
     public void executeEvent()
     {
-        randomEventNum = Random.Range(1,7);
-
-        Debug.Log(randomEventNum);
+        randomEventNum = Random.Range(1,5);
 
         callRandomEvent(randomEventNum);
 

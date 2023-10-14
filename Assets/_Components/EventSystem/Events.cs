@@ -11,7 +11,7 @@ public class Events : ScriptableObject
 
     public string[] EventChoices = new string[2];
 
-    public string[] EventAffects = new string[2];
+    public Sprite Background;
 
     /*
     // Event 1: Resource Scarcity

@@ -26,7 +26,7 @@ private void Awake()
     
     public int metal=100;
 
-    public int happiness = 100;
+    public int rebel = 100;
 
     public string State = "Standart";
 }

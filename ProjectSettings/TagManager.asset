@@ -13,7 +13,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - UI Scene
   - 
   - 
   - 
@@ -51,4 +51,7 @@ TagManager:
     locked: 0
   - name: ground
     uniqueID: 2809226051
+    locked: 0
+  - name: citizen
+    uniqueID: 3328174221
     locked: 0

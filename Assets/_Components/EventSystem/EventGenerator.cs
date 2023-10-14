@@ -21,7 +21,7 @@ public class EventGenerator : MonoBehaviour
 
     public TMP_Text button2Text;
 
-    public int choiceMade;
+    public int choiceMade = 1;
     public void callRandomEvent(int randomEventNum){
 
         Events currentEvents = EventsArray[randomEventNum];
@@ -101,12 +101,16 @@ public class EventGenerator : MonoBehaviour
         choiceMade = 1;
         
         Canvas.SetActive(false);
+
+        madeEventAffects(choiceMade);
     }
 
     public void Chosed2(){
         choiceMade = 2; 
 
         Canvas.SetActive(false);
+
+        madeEventAffects(choiceMade);
     }
     
     
@@ -114,11 +118,12 @@ public class EventGenerator : MonoBehaviour
     
     public void madeEventAffects(int eventNum){
         int prob = chance50();
-        Debug.Log(eventNum);
+        Debug.Log(choiceMade);
 
         switch (eventNum)
         {
             case 0:
+                                    Debug.Log("Girdi  choi " + choiceMade);
 
                 if(choiceMade == 1){
 
@@ -126,6 +131,7 @@ public class EventGenerator : MonoBehaviour
                     decreaseRebel(10);
                 }
                 else if(choiceMade == 2){
+                    Debug.Log("Girdi rebel artmadı");
                     increaseRebel(20);
                 }
                 
@@ -256,9 +262,7 @@ public class EventGenerator : MonoBehaviour
                     decreaseRebel(10);
                 }   
                 break;
-            default:
-                Debug.Log("Default case is executed");
-                break;
+            
         } 
         
     }
@@ -288,6 +292,8 @@ public class EventGenerator : MonoBehaviour
 
         if (elapsedTime >= nextEventTime && !Canvas.activeInHierarchy)
         {
+                    Debug.Log("Vexe . "+ choiceMade);
+
             eventNum+=1;
             executeEvent();
             nextEventTime = FindTimeRange();
@@ -307,7 +313,8 @@ public class EventGenerator : MonoBehaviour
 
         callRandomEvent(eventNum);
 
-        madeEventAffects(eventNum);
+        madeEventAffects(choiceMade);
+        Debug.Log("Vhoice exe . "+ choiceMade);
 
         //randomEventNum = Random.Range(1,5);
 

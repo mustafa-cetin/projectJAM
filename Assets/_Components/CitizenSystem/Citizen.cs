@@ -1,19 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Citizens/Citizen")]
-public class Citizen : ScriptableObject
+// [CreateAssetMenu(menuName = "Citizens/Citizen")]
+public class Citizen : MonoBehaviour
 {
-    public string name;
+    public string citizenName;
 
     public string state;
 
-    public int strengh;
+    public int endurance;
+
+    public int strength;
 
     public int intel;
 
-    public int dexterity; 
+    public int cooking; 
 
-    public int luck;
+
+    
+
+
+   
+
+
 }

@@ -1829,6 +1829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   referencePrefab: {fileID: 7359957302417929056, guid: 8c7c953746504f7468ae382b69c13b74, type: 3}
+  referenceHolder: {fileID: 0}
 --- !u!1 &1073212038
 GameObject:
   m_ObjectHideFlags: 0
@@ -1859,9 +1860,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56ee5fe69b4072044bd090c45786bdb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minTime: 10
-  maxTime: 30
-  Canvas: {fileID: 964834188}
 --- !u!4 &1073212040
 Transform:
   m_ObjectHideFlags: 0

@@ -92,14 +92,6 @@ public class EventGenerator : MonoBehaviour
         return result;
     }
 
-    void calcExpenses(){
-        //people count
-
-        //room count
-
-
-    }
-
     public GameObject Choice1;
     public GameObject Choice2;
 
@@ -118,67 +110,60 @@ public class EventGenerator : MonoBehaviour
     }
     
     
+    
+    
     public void madeEventAffects(int eventNum){
         int prob = chance50();
+        Debug.Log(eventNum);
 
         switch (eventNum)
         {
             case 0:
-                Debug.Log("Resources out of" + checkShelterStateLevels());
-                if(choiceMade == 0){
-                    //rastgele adam seç gönder
-                }
-                else if(choiceMade == 1){
 
+                if(choiceMade == 1){
+
+                    decreaseMetal(30);
+                    decreaseRebel(10);
+                }
+                else if(choiceMade == 2){
+                    increaseRebel(20);
                 }
                 
 
                 break;
             case 1:
-                Debug.Log("New peoples arrived");
-                if(choiceMade == 0){
-                    Debug.Log("yemek ve metal arttı");
+                if(choiceMade == 1){
                     increaseFood(30);
                     increaseMetal(40);
 
                     prob = chance50();
 
-                    if(prob == 1){
-                        increaseRebel(40);
-                        Debug.Log("mutluluk arttı");
-
+                    if(prob == 0){
+                        increaseRebel(20);
                     }
-                    else if(prob == 0){
-                        decreaseRebel(40);
-                        Debug.Log("mutluluk azaldı");
-
+                    else if(prob == 1){
+                        decreaseRebel(20);
                     }
                 }
                 
                 break;
             case 2:
-            
-                Debug.Log("Rebel var");
-                
-                if(choiceMade == 0){
-                    Debug.Log("choiceMade yapıldı");
+                            
+                if(choiceMade == 1){
+
                     decreaseRebel(Shelter.Instance.rebel/2);
                     decreaseMetal(30);
                     decreaseFood(30);
                     
                 }
-                if(choiceMade == 1){
+                if(choiceMade == 2){
                     prob = chance50();
                     
                     if(prob == 1){
                         decreaseRebel(Shelter.Instance.rebel);
-                        Debug.Log("rebel sıfırlandı");
-
                     }
                     else if(prob == 0){
-                        increaseRebel(40);
-                        Debug.Log("rebel arttı");
-
+                        decreaseRebel(20);
                     }
                 }
 
@@ -187,26 +172,18 @@ public class EventGenerator : MonoBehaviour
 
                 break;
             case 3:
-                Debug.Log("Event 3 is executed");
 
-                // drain boşalt reebel
                 if(choiceMade == 1){
-                                    Debug.Log("metal azaldı rebel");
-
-                    decreaseMetal(30);
-                }
-                else if(choiceMade == 0){
-                                    Debug.Log("rebel arttı rebel");
-
                     increaseRebel(30);
+                }
+                else if(choiceMade == 2){
+                    decreaseMetal(30);
+                    
                 }
 
                 break;
             case 4:
-                Debug.Log("Event 4 is executed");
-                // anne çocuğunu gönderiyor
                 if(choiceMade == 1){
-                                    Debug.Log("çocuk gitti");
                     increaseRebel(20);
                     increaseMetal(20);
                     increaseElec(20);
@@ -214,15 +191,71 @@ public class EventGenerator : MonoBehaviour
 
                     
                 }
-                if(choiceMade == 0){
-                                    Debug.Log("çocuk kaldı");
-
-                    decreaseOxygen(40);
+                if(choiceMade == 2){
+                    decreaseMetal(20);
+                    decreaseFood(20);
+                    decreaseRebel(30);
                     
                 }
                 
                 break;
-            
+            case 5:
+                if(choiceMade == 1){
+                    increaseRebel(20);
+
+                    increaseFood(50);
+
+                    
+                }
+                if(choiceMade == 2){
+                    decreaseMetal(50);
+                    decreaseRebel(Shelter.Instance.rebel);
+                    
+                }
+                break;
+            case 6:
+                if(choiceMade == 1){
+                    //peoples will die
+                    decreaseMetal(20);
+                    
+                }
+                if(choiceMade == 2){
+                   //increase o2 consum
+                }  
+                break; 
+             case 7:
+                if(choiceMade == 1){
+                    //electric consum dec
+                    
+                }
+                if(choiceMade == 2){
+                   //water consum inc
+                }
+                break; 
+            case 8:
+                if(choiceMade == 1){
+                    decreaseRebel(Shelter.Instance.rebel);
+                    increaseMetal(20);
+                    
+                }
+                if(choiceMade == 2){
+                    increaseRebel(30);
+                    decreaseFood(80);
+                }
+                break;       
+            case 9:
+                if(choiceMade == 1){
+                    increaseMetal(20);
+                    increaseRebel(30);
+                    increaseFood(50);
+                    
+                    
+                }
+                if(choiceMade == 2){
+                    //increase productions
+                    decreaseRebel(10);
+                }   
+                break;
             default:
                 Debug.Log("Default case is executed");
                 break;
@@ -230,14 +263,16 @@ public class EventGenerator : MonoBehaviour
         
     }
     
-    int randomEventNum;
+    
+    //int randomEventNum;
+
+    public int eventNum =-1;
 
     public float minTime = 10.0f;
     public float maxTime = 30.0f;
     public float nextEventTime;
     public float elapsedTime;
 
-    //public GameObject Canvas;
     private void Start()
     {
         nextEventTime = FindTimeRange();
@@ -246,25 +281,14 @@ public class EventGenerator : MonoBehaviour
     
     private void Update()
     {
-        /* 
-        if(checkShelterStateLevels() != null){
-
-            // Its calls event out of resource
-            madeEventAffects(0);
-        }
-
-        if(Shelter.Instance.rebel < 30){
-            // Its calls event rebel started
-            madeEventAffects(2);
-        } */
-
+          
         if(!Canvas.activeInHierarchy){
             elapsedTime += Time.deltaTime;
         }
 
         if (elapsedTime >= nextEventTime && !Canvas.activeInHierarchy)
         {
-            
+            eventNum+=1;
             executeEvent();
             nextEventTime = FindTimeRange();
             elapsedTime = 0f;
@@ -279,11 +303,17 @@ public class EventGenerator : MonoBehaviour
     
     public void executeEvent()
     {
-        randomEventNum = Random.Range(1,5);
 
-        callRandomEvent(randomEventNum);
 
-        madeEventAffects(randomEventNum);
+        callRandomEvent(eventNum);
+
+        madeEventAffects(eventNum);
+
+        //randomEventNum = Random.Range(1,5);
+
+       // callRandomEvent(randomEventNum);
+
+       // madeEventAffects(randomEventNum);
         
         Canvas.SetActive(true);
         

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MetalworksRoom : BuildingRoom
+public class MetalworksRoom : ResourceRoom
 {
     [SerializeField]
     private float betweenTimeCount;

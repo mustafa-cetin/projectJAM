@@ -20,12 +20,15 @@ public class Room : MonoBehaviour
         color=Color.black;
     }
     public virtual void Update(){
-        if (progress!=100f)
+        if (progress<10f)
         {
             progress+=5*Time.deltaTime;
             color=Color.HSVToRGB(0,0,progress/10);
             GetComponent<SpriteRenderer>().color=color;
+        }else{
+            ready=true;
         }
+        Debug.Log(progress);
     }
     public bool IsBuildableTheTile(ShelterGrid shelterGrid,ShelterGridTile shelterGridTile){
         bool flag=false;

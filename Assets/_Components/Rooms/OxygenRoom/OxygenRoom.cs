@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OxygenRoom : BuildingRoom
+public class OxygenRoom : ResourceRoom
 {
     [SerializeField]
     private float betweenTimeCount;
@@ -17,6 +17,8 @@ public class OxygenRoom : BuildingRoom
         if (Time.time>=betweenTimeCount+timer && Shelter.Instance.electric>=5 && ready)
         {
             timer=Time.time;
+
+            Debug.Log("worked");
             Shelter.Instance.oxygen+=5;
         }
     }

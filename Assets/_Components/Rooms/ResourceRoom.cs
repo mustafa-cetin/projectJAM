@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildingRoom : Room
+public class ResourceRoom : Room
 {
     public override bool CheckValidation(ShelterGrid shelterGrid,ShelterGridTile shelterGridTile){
         ShelterGridTile[] gridLine=shelterGrid.GetGridTileLine(shelterGridTile.GetPosition().y);

@@ -39,13 +39,13 @@ public class EventGenerator : MonoBehaviour
         
     }
     string checkShelterStateLevels(){
-        if(Shelter.Instance.electric < 30){
+        if(Shelter.Instance.Electric < 30){
             return "Electric";
         }
-        if(Shelter.Instance.food < 30){
+        if(Shelter.Instance.Food < 30){
             return "Food";
         }
-        if(Shelter.Instance.oxygen < 30){
+        if(Shelter.Instance.Oxygen < 30){
             return "Oxygen";
         }
         else{ return null;}
@@ -80,11 +80,11 @@ public class EventGenerator : MonoBehaviour
         Shelter.Instance.ChangeElectric(-1*number);
     }
     void increaseMetal(int number){
-        Shelter.Instance.metal += number;
+        Shelter.Instance.ChangeMetal(number);
     }
 
     void decreaseMetal(int number){
-        Shelter.Instance.metal -= number;
+        Shelter.Instance.ChangeMetal(-1*number);
     }
 
     int chance50(){

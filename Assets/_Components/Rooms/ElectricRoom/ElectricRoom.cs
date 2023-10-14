@@ -16,7 +16,7 @@ public class ElectricRoom : ResourceRoom
         base.Update();
         if (Worker!=null)
         {
-        if (Time.time>=betweenTimeCount+timer && Shelter.Instance.electric>=5 && ready)
+        if (Time.time>=betweenTimeCount+timer && Shelter.Instance.Electric>=5 && ready)
         {
             timer=Time.time;
             Shelter.Instance.ChangeElectric(3);

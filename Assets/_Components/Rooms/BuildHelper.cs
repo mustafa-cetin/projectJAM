@@ -50,10 +50,10 @@ public class BuildHelper : MonoBehaviour
            && IsMaterialsEnough(roomManager.SelectedRoomType.requirements);
     }
     public bool IsMaterialsEnough(RoomRequirement roomRequirement){
-         return Shelter.Instance.food>=roomRequirement.food
-          && Shelter.Instance.electric>=roomRequirement.electric
-           && Shelter.Instance.metal>=roomRequirement.metal
-           && Shelter.Instance.oxygen>=roomRequirement.oxygen;
+         return Shelter.Instance.Food>=roomRequirement.food
+          && Shelter.Instance.Electric>=roomRequirement.electric
+           && Shelter.Instance.Metal>=roomRequirement.metal
+           && Shelter.Instance.Oxygen>=roomRequirement.oxygen;
     }
     public void ShowBuildablePlaces(){
         RemoveReferences();

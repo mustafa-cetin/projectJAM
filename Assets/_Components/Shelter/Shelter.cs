@@ -26,36 +26,42 @@ public List<Citizen> citizens;
 
     public Mode currentMode=Mode.None;
 
-    public int electric = 100;
+    public int Electric{get;private set;}
 
-    public int food = 100;
+    public int Food{get;private set;}
 
-    public int oxygen = 100;
+    public int Oxygen{get;private set;}
     
-    public int metal=100;
+    public int Metal{get;private set;}
 
     [Range(0,100)]
     public int rebel = 0;
 
+    private void Start() {
+        Food=100;
+        Electric=100;
+        Oxygen=100;
+        Metal=100;
+    }
 
     public void ChangeElectric(int value){
-        electric+=value;
+        Electric+=value;
         uiResourceManager.NotifyElectric(value);
 
     }
     public void ChangeFood(int value){
-        food+=value;
+        Food+=value;
 
         uiResourceManager.NotifyFood(value);
 
     }
     public void ChangeOxygen(int value){
-        oxygen+=value;
+        Oxygen+=value;
         uiResourceManager.NotifyOxygen(value);
 
     }
     public void ChangeMetal(int value){
-        metal+=value;
+        Metal+=value;
         uiResourceManager.NotifyMetal(value);
 
     }

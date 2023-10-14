@@ -18,6 +18,10 @@ private void Awake()
         Instance = this; 
     } 
 }
+public List<Citizen> citizens;
+
+    public Mode currentMode=Mode.None;
+
     public int electric = 100;
 
     public int food = 100;
@@ -29,5 +33,12 @@ private void Awake()
     public int rebel = 100;
 
     public string State = "Standart";
+
 }
+    public enum Mode
+    {
+        None,
+        Build,
+        Character
+    }
 

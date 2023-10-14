@@ -19,24 +19,76 @@ public class Citizen : MonoBehaviour
     public int cooking; 
 
 
+
+    public Vector3[] targetPosition; // Gitmek istediğiniz pozisyon
+    public float arrivalThreshold = 0.1f; // Hedefe varma eşiği
     public float moveSpeed = 5f; // Hareket hızı
+
+    
+    private bool hasArrived = false; // Hedefe ulaşıldı mı?
+
+    public Room currentRoom;
+
+    int i=0;
+    private Collider2D col;
+    private void Start() {
+        col=GetComponent<Collider2D>();
+        targetPosition=new Vector3[1];
+        targetPosition[0]=transform.position;
+    }
 
     void Update()
     {
-        float moveInput = Input.GetAxis("Horizontal"); // Sağ veya sol ok tuşlarına basılınca -1, 0 veya 1 döndürür.
+        Move();
+    }
+    public void SetTargetPosition(Vector3[] position){
 
-        Vector3 newPosition = transform.position + new Vector3(moveInput * moveSpeed * Time.deltaTime, 0, 0);
+        i=0;
+        targetPosition=position;
+        hasArrived=false;
 
-        if (moveInput < 0)
+    }
+    void Move(){
+
+         if (!hasArrived)
         {
-            transform.localScale = new Vector3(1, 1, 1); // Karakteri sağa döndür
-        }
-        else if (moveInput > 0)
-        {
-            transform.localScale = new Vector3(-1, 1, 1); // Karakteri sola döndür
-        }
+            col.isTrigger=true;
+            if (i!=1)
+            {
+                
+            // Karakterin hedef pozisyona doğru hareket etmesini sağlar.
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition[i], moveSpeed * Time.deltaTime);
 
-        transform.position = newPosition;
+
+            }else{
+                transform.position=targetPosition[i];
+            }
+
+            if (transform.position.x-targetPosition[i].x>=0)
+            {
+                transform.localEulerAngles=new Vector3(0,0,0);
+            }else{
+                
+                transform.localEulerAngles=new Vector3(0,180,0);
+            }
+            // Hedefe ulaşma durumunu kontrol et
+            if (Vector3.Distance(transform.position, targetPosition[i]) < arrivalThreshold)
+            {
+                // Hedefe ulaşıldığında yapılacak işlemler buraya yazılır
+                Debug.Log("Hedefe ulaşıldı!");
+                hasArrived = true; // Hedefe ulaşıldı
+                
+                col.isTrigger=false;
+            }
+        }
+        else{
+            if (i<targetPosition.Length-1)
+            {
+                hasArrived=false;
+                i++;
+            }
+        }
+        
     }
 
 

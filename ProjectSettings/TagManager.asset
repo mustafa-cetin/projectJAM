@@ -5,7 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - LadderRoom
-  - BuildingRoom
+  - Citizen
+  - ResourceRoom
   layers:
   - Default
   - TransparentFX

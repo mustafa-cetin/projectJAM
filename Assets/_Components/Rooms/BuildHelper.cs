@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class BuildHelper : MonoBehaviour
 {
@@ -25,8 +26,11 @@ public class BuildHelper : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && BuildMode && roomManager.SelectedRoomType!=null)
+        if (Input.GetMouseButtonDown(0) && Shelter.Instance.currentMode==Mode.Build && roomManager.SelectedRoomType!=null)
         {
+            if (!EventSystem.current.IsPointerOverGameObject()) // Eğer UI üzerinde tıklama yoksa devam et
+            {
+                // Oyun dünyası üzerinde bir şey yap
 
             Vector3 mousePosition = Input.mousePosition;
             mousePosition.z = Camera.main.nearClipPlane;
@@ -34,6 +38,8 @@ public class BuildHelper : MonoBehaviour
             if (shelterGrid.GetShelterGridTileWorldPosition(worldPosition)!=null)
             {
                 roomManager.BuildRoom(shelterGrid.GetShelterGridTileWorldPosition(worldPosition));
+            }
+            
             }
         }
     }
@@ -78,10 +84,11 @@ public class BuildHelper : MonoBehaviour
         references.Clear();
     }
     public void SetBuildMode(bool state){
-        BuildMode=state;
         if (!state){
+            Shelter.Instance.currentMode=Mode.None;
             RemoveReferences();
         }else{
+            Shelter.Instance.currentMode=Mode.Build;
             roomManager.SetSelectedRoomType(null);
         }
     }

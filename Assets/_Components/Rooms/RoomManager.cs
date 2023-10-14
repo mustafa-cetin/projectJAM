@@ -18,6 +18,29 @@ public class RoomManager : MonoBehaviour
 
     private BuildHelper buildHelper;
 
+    public Vector3 GetRoomCoordinates(Vector3 position){
+        return shelterGrid.GetWorldPosition(shelterGrid.GetGridTilePosition(position));
+    }
+    public Room GetRoom(Vector3 position){
+        return shelterGrid.GetShelterGridTileWorldPosition(position).GetRoom();
+    }
+    public int GetElevation(Vector3 position){
+        return shelterGrid.GetGridTilePosition(position).y;
+    }
+    public Vector3 GetLadderRoomCoordinatesByY(int y){
+        ShelterGridTile[] shelterGridTileLine=shelterGrid.GetGridTileLine(y);
+        foreach (var item in shelterGridTileLine)
+        {
+            if (item.GetRoom()!=null)
+            {
+            if (item.GetRoom().CompareTag("LadderRoom"))
+            {
+                return shelterGrid.GetWorldPosition(item.GetPosition());
+            }
+            }
+        }
+        return Vector3.zero;
+    }
     
     void Start()
     {
@@ -39,7 +62,7 @@ public class RoomManager : MonoBehaviour
             Room buildedRoom=Instantiate(SelectedRoomType,transform);
             tile.SetRoom(buildedRoom);
             buildedRoom.transform.position=shelterGrid.GetWorldPosition(tile.GetPosition());
-            if (buildHelper.BuildMode)
+            if (Shelter.Instance.currentMode==Mode.Build)
             {
                 buildHelper.ShowBuildablePlaces();
             }

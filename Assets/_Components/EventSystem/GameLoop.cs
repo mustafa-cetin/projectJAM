@@ -5,11 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class GameLoop : MonoBehaviour
 {
-    public float minTime = 10.0f;
-    public float maxTime = 30.0f;
+    /*
+    public float minTime = 1.0f;
+    public float maxTime = 3.0f;
     private float nextEventTime;
     private float elapsedTime;
 
+    //public GameObject Canvas;
     private void Start()
     {
         nextEventTime = FindTimeRange();
@@ -31,10 +33,12 @@ public class GameLoop : MonoBehaviour
     {
         return Random.Range(minTime, maxTime);
     }
-
-    private void executeEvent()
+    
+    public void executeEvent()
     {
-        Debug.Log("Event will be executed");
-        SceneManager.LoadScene(0);
+        Canvas.SetActive(true);
+        
     }
+    */
+    
 }

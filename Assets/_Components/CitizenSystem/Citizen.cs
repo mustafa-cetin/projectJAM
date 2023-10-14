@@ -67,7 +67,7 @@ public class Citizen : MonoBehaviour
 
             }else{
                 transform.position=targetPosition[i];
-                Shelter.Instance.electric-=10;
+                Shelter.Instance.ChangeElectric-=10;
             }
 
             if (transform.position.x-targetPosition[i].x>=0)

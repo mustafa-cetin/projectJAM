@@ -19,9 +19,9 @@ public class OxygenRoom : ResourceRoom
         if (Time.time>=betweenTimeCount+timer && Shelter.Instance.electric>=5 && ready)
         {
             timer=Time.time;
-            Shelter.Instance.oxygen+=Random.Range(1,Worker.endurance);
-            Shelter.Instance.electric-=1;
-            Shelter.Instance.food-=1;
+            Shelter.Instance.ChangeOxygen(Random.Range(1,Worker.endurance));
+            Shelter.Instance.ChangeElectric(-1*1);
+            Shelter.Instance.ChangeFood(-1*1);
         }
         }
     }

@@ -112,7 +112,7 @@ public class CitizenGenerator : MonoBehaviour
                 targetRoomPositions=new Vector3[]{new Vector3(targetRoomCoordinates.x,selectedCitizen.transform.position.y,selectedCitizen.transform.position.z)};
 
                 }else{
-                    if (Shelter.Instance.electric<=10) return;
+                    if (Shelter.Instance.ChangeElectric<=10) return;
                     // selected citizen go to own elevation ladder room
                     targetRoomPositions=new Vector3[3];
                     targetRoomPositions[0]=new Vector3(

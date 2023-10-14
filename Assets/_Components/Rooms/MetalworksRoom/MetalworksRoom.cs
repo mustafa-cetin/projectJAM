@@ -19,7 +19,7 @@ public class MetalworksRoom : ResourceRoom
             timer=Time.time;
             Shelter.Instance.metal+=5;
             
-            Shelter.Instance.electric-=5;
+            Shelter.Instance.ChangeElectric(-1*5);
         }
     }
 

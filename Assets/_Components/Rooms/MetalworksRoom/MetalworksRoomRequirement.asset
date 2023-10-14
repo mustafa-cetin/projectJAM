@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: MetalworksRoomRequirement
   m_EditorClassIdentifier: 
   electric: 5
-  metal: 0
+  metal: 5
   food: 5
   oxygen: 0

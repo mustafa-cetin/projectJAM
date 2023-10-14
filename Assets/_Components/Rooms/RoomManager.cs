@@ -100,10 +100,10 @@ public class RoomManager : MonoBehaviour
 
 
     public void DecreaseRequirements(RoomRequirement roomRequirement){
-        Shelter.Instance.electric-=roomRequirement.electric;
-        Shelter.Instance.food-=roomRequirement.food;
-        Shelter.Instance.metal-=roomRequirement.metal;
-        Shelter.Instance.oxygen-=roomRequirement.oxygen;
+        Shelter.Instance.ChangeElectric(-1*roomRequirement.electric);
+        Shelter.Instance.ChangeFood(-1*roomRequirement.food);
+        Shelter.Instance.ChangeMetal(-1*roomRequirement.metal);
+        Shelter.Instance.ChangeOxygen(-1*roomRequirement.oxygen);
     }
 
 

@@ -59,25 +59,25 @@ public class EventGenerator : MonoBehaviour
         Shelter.Instance.rebel -= number;
     }
     void increaseFood(int number){
-        Shelter.Instance.food += number;
+        Shelter.Instance.ChangeFood(number);
     }
 
     void decreaseFood(int number){
-        Shelter.Instance.food -= number;
+        Shelter.Instance.ChangeFood(-1*number);
     }
     void increaseOxygen(int number){
-        Shelter.Instance.oxygen += number;
+        Shelter.Instance.ChangeOxygen(number);
     }
 
     void decreaseOxygen(int number){
-        Shelter.Instance.oxygen -= number;
+        Shelter.Instance.ChangeOxygen(-1*number);
     }
     void increaseElec(int number){
-        Shelter.Instance.electric += number;
+        Shelter.Instance.ChangeElectric(number);
     }
 
     void decreaseElec(int number){
-        Shelter.Instance.electric -= number;
+        Shelter.Instance.ChangeElectric(-1*number);
     }
     void increaseMetal(int number){
         Shelter.Instance.metal += number;
@@ -102,7 +102,7 @@ public class EventGenerator : MonoBehaviour
         
         Canvas.SetActive(false);
 
-        madeEventAffects(choiceMade);
+        madeEventAffects(eventNum);
     }
 
     public void Chosed2(){
@@ -110,7 +110,7 @@ public class EventGenerator : MonoBehaviour
 
         Canvas.SetActive(false);
 
-        madeEventAffects(choiceMade);
+        madeEventAffects(eventNum);
     }
     
     
@@ -313,7 +313,9 @@ public class EventGenerator : MonoBehaviour
 
         callRandomEvent(eventNum);
 
-        madeEventAffects(choiceMade);
+      //  madeEventAffects(choiceMade);
+
+
         Debug.Log("Vhoice exe . "+ choiceMade);
 
         //randomEventNum = Random.Range(1,5);

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Shelter : MonoBehaviour
 {
+
+
+[SerializeField]
+    UIResourceManager uiResourceManager;
     public static Shelter Instance { get; private set; }
 private void Awake() 
 { 
@@ -32,6 +36,29 @@ public List<Citizen> citizens;
 
     [Range(0,100)]
     public int rebel = 0;
+
+
+    public void ChangeElectric(int value){
+        electric+=value;
+        uiResourceManager.NotifyElectric(value);
+
+    }
+    public void ChangeFood(int value){
+        food+=value;
+
+        uiResourceManager.NotifyFood(value);
+
+    }
+    public void ChangeOxygen(int value){
+        oxygen+=value;
+        uiResourceManager.NotifyOxygen(value);
+
+    }
+    public void ChangeMetal(int value){
+        metal+=value;
+        uiResourceManager.NotifyMetal(value);
+
+    }
 
     public string State = "Standart";
 

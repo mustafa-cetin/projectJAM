@@ -12,6 +12,10 @@ public class BuildHelper : MonoBehaviour
     Transform referencePrefab;
     List<Transform> references;
 
+    
+
+    [SerializeField]
+    Transform referenceHolder;
     void Start()
     {
         shelterGrid=GetComponent<ShelterGrid>();
@@ -40,11 +44,7 @@ public class BuildHelper : MonoBehaviour
            && Shelter.Instance.oxygen>=roomRequirement.oxygen;
     }
     public void ShowBuildablePlaces(){
-        foreach (var item in references)
-        {
-            Destroy(item.gameObject);
-        }
-        references.Clear();
+        RemoveReferences();
         bool[,] buildableAreas=shelterGrid.GetBuildableAreaOnGrid(roomManager.SelectedRoomType);
         
         for (int x = 0; x < buildableAreas.GetLength(0); x++)
@@ -53,11 +53,22 @@ public class BuildHelper : MonoBehaviour
             {
                 if (buildableAreas[x,y] && CanBuild(shelterGrid.GetShelterGridTile(new Vector2Int(x,y))))
                 {
-                    Transform reference=Instantiate(referencePrefab);
+                    Transform reference=Instantiate(referencePrefab,referenceHolder);
                     reference.transform.position=shelterGrid.GetWorldPosition(new Vector2Int(x,y));
                     references.Add(reference); 
                 }
             }
         }
+    }
+    public void RemoveReferences(){
+
+        foreach (var item in references)
+        {
+            Destroy(item.gameObject);
+        }
+        references.Clear();
+    }
+    public void SetBuildMode(bool state){
+        BuildMode=state;
     }
 }

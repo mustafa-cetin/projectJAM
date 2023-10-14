@@ -23,6 +23,7 @@ public class RoomManager : MonoBehaviour
     {
         buildHelper=GetComponent<BuildHelper>();
         shelterGrid=GetComponent<ShelterGrid>();
+        SelectedRoomType=ladderRoom;
     }
     public void BuildRoom(ShelterGridTile tile){
         if (buildHelper.CanBuild(tile))

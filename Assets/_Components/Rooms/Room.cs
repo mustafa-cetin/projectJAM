@@ -28,7 +28,6 @@ public class Room : MonoBehaviour
         }else{
             ready=true;
         }
-        Debug.Log(progress);
     }
     public bool IsBuildableTheTile(ShelterGrid shelterGrid,ShelterGridTile shelterGridTile){
         bool flag=false;

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7359957302417929056}
   - component: {fileID: 5254630622284477179}
   m_Layer: 0
-  m_Name: sdfdsfdsfds-removebg-preview
+  m_Name: Reference
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

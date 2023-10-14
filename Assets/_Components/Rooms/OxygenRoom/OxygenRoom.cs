@@ -17,8 +17,6 @@ public class OxygenRoom : ResourceRoom
         if (Time.time>=betweenTimeCount+timer && Shelter.Instance.electric>=5 && ready)
         {
             timer=Time.time;
-
-            Debug.Log("worked");
             Shelter.Instance.oxygen+=5;
         }
     }

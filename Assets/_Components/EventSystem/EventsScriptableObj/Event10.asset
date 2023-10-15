@@ -17,4 +17,4 @@ MonoBehaviour:
   EventChoices:
   - Attack them gain sources
   - Focus production
-  Background: {fileID: 0}
+  Background: {fileID: 21300000, guid: 58ede0a624c49874790cf35507432dc0, type: 3}

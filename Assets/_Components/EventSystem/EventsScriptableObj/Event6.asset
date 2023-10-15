@@ -15,6 +15,6 @@ MonoBehaviour:
   EventTitle: Out Of Foods
   Event: 'Food stocks are running out '
   EventChoices:
-  - put sawdust to increase food amount
-  - sacrifice your own luxury
+  - Put sawdust to increase food amount
+  - Sacrifice your own luxury
   Background: {fileID: 21300000, guid: ac016f36d47f9ff47b5fc92b4c08e8e9, type: 3}

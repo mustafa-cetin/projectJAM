@@ -117,13 +117,16 @@ public class EventGenerator : MonoBehaviour
     
     
     public void madeEventAffects(int eventNum){
+        
         int prob = chance50();
         Debug.Log(choiceMade);
+
+        Time.timeScale=1;
 
         switch (eventNum)
         {
             case 0:
-                                    Debug.Log("Girdi  choi " + choiceMade);
+                Debug.Log("Girdi  choi " + choiceMade);
 
                 if(choiceMade == 1){
 
@@ -163,7 +166,7 @@ public class EventGenerator : MonoBehaviour
                             
                 if(choiceMade == 1){
 
-                    decreaseRebel(Shelter.Instance.rebel/2);
+                    decreaseRebel(10);
                     decreaseMetal(30);
                     decreaseFood(30);
                     
@@ -221,27 +224,26 @@ public class EventGenerator : MonoBehaviour
                 }
                 if(choiceMade == 2){
                     decreaseMetal(50);
-                    decreaseRebel(Shelter.Instance.rebel);
+                    decreaseRebel(20);
                     
                 }
                 break;
             case 6:
                 if(choiceMade == 1){
-                    //peoples will die
                     decreaseMetal(20);
                     
                 }
                 if(choiceMade == 2){
-                   //increase o2 consum
+                    increaseOxygen(50);
                 }  
                 break; 
              case 7:
                 if(choiceMade == 1){
-                    //electric consum dec
+                    decreaseElec(40);
                     
                 }
                 if(choiceMade == 2){
-                   //water consum inc
+                   decreaseOxygen(30);
                 }
                 break; 
             case 8:
@@ -264,7 +266,10 @@ public class EventGenerator : MonoBehaviour
                     
                 }
                 if(choiceMade == 2){
-                    //increase productions
+                    increaseElec(30);
+                    increaseFood(30);
+                    increaseMetal(30);
+                    increaseOxygen(30);
                     decreaseRebel(10);
                 }   
                 break;
@@ -317,7 +322,7 @@ public class EventGenerator : MonoBehaviour
     public void executeEvent()
     {
 
-
+        Time.timeScale=0;
         callRandomEvent(eventNum);
 
       //  madeEventAffects(choiceMade);

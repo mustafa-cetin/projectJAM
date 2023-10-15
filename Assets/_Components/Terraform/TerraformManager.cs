@@ -63,6 +63,8 @@ public class TerraformManager : MonoBehaviour
     public void UpdateEnvironment(){
         if (IsMaterialsEnough(levelByRequirements[terraformLevel]) && terraformLevel<3)
         {
+            
+            DecreaseRequirements(levelByRequirements[terraformLevel]);
             stageIcons[terraformLevel].color=Color.yellow;
             ChangeBackground();ChangeTileGrounds();ChangeTileBackgrounds();
             FillRequirements();
@@ -73,6 +75,13 @@ public class TerraformManager : MonoBehaviour
             }
             Debug.Log("area updated");
         }
+    }
+
+    public void DecreaseRequirements(RoomRequirement roomRequirement){
+        Shelter.Instance.ChangeElectric(-1*roomRequirement.electric);
+        Shelter.Instance.ChangeFood(-1*roomRequirement.food);
+        Shelter.Instance.ChangeMetal(-1*roomRequirement.metal);
+        Shelter.Instance.ChangeOxygen(-1*roomRequirement.oxygen);
     }
     public void ChangeTileGrounds(){
         mainGround.SetActive(false);

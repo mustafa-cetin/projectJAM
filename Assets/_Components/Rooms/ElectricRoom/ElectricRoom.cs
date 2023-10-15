@@ -19,7 +19,7 @@ public class ElectricRoom : ResourceRoom
         if (Time.time>=betweenTimeCount+timer && Shelter.Instance.Electric>=5 && ready)
         {
             timer=Time.time;
-            Shelter.Instance.ChangeElectric(3);
+            Shelter.Instance.ChangeElectric(8);
             Shelter.Instance.ChangeFood(-2);
         }
         }

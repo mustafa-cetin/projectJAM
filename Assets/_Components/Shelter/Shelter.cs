@@ -22,7 +22,8 @@ private void Awake()
         Instance = this; 
     } 
 }
-public List<Citizen> citizens;
+    public float timer;
+    public List<Citizen> citizens;
 
     public Mode currentMode=Mode.None;
 
@@ -37,11 +38,27 @@ public List<Citizen> citizens;
     [Range(0,100)]
     public int rebel = 0;
 
+    public string timeText;
+    public int Day{get;private set;}
+
     private void Start() {
         Food=100;
         Electric=100;
         Oxygen=100;
         Metal=100;
+        timer=Time.time;
+        Day=0;
+
+    }
+    private void Update() {
+        if (Time.time>=48f+timer)
+        {
+            ChangeFood(-1*citizens.Count*10);
+            ChangeOxygen(-1*citizens.Count*5);
+            Day++;
+            timer=Time.time;
+        }
+         timeText=((int)(Time.time-timer)/2).ToString();
     }
 
     public void ChangeElectric(int value){

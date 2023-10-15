@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,10 +11,9 @@ public class CitizenGenerator : MonoBehaviour
 
     public Citizen citizenObject;
 
-
     public Citizen selectedCitizen;
 
-
+   // public GameObject textObject;
     
 
     public void defineCitizen(){
@@ -49,9 +49,26 @@ public class CitizenGenerator : MonoBehaviour
                 Debug.Log("worked");
                 Citizen clickedCitizen=hit.transform.GetComponent<Citizen>();
 
+                /*
+                textObject.SetActive(true);
+
+                    string name = clickedCitizen.citizenName;
+                    int endu = clickedCitizen.endurance;
+                    int cook = clickedCitizen.cooking;
+                    int intel = clickedCitizen.intel;
+                    int strength = clickedCitizen.strength;
+                    
+                    Debug.Log("name");
+                    Debug.Log(name);
+                    Debug.Log("name");
+                    textObject.GetComponent<TextMeshPro>().text = "Name : " + name + "\nEndurance : " + endu + "\nCooking : " + cook + "\nIntelligence : " + intel + "\nStrength : " + strength; 
+                    */
+
+                
             if (clickedCitizen==selectedCitizen)
             {
-
+                
+                
                 Shelter.Instance.currentMode=Mode.None;
                 selectedCitizen.ChangeSelectedValue(false);
                 selectedCitizen=null;
@@ -59,6 +76,8 @@ public class CitizenGenerator : MonoBehaviour
             {
                 if (selectedCitizen!=null)
                 {
+                    
+
                     selectedCitizen.ChangeSelectedValue(false);
                 }
 

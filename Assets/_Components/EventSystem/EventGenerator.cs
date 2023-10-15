@@ -298,8 +298,10 @@ public class EventGenerator : MonoBehaviour
 
         if (elapsedTime >= nextEventTime && !Canvas.activeInHierarchy)
         {
-
-            eventNum+=1;
+            if(eventNum<9){
+                eventNum+=1;
+            }
+            
             executeEvent();
             nextEventTime = FindTimeRange();
             elapsedTime = 0f;

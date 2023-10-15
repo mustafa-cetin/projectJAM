@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Event9
   m_EditorClassIdentifier: 
   EventTitle: Attack on Shelter
-  Event: A large group came to attack the shelter
+  Event: A large Alien swarm came to attack the shelter
   EventChoices:
   - Defend yourself
   - Try Giving Food
-  Background: {fileID: 0}
+  Background: {fileID: 21300000, guid: 58ede0a624c49874790cf35507432dc0, type: 3}

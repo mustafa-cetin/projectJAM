@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Event2
   m_EditorClassIdentifier: 
   EventTitle: Outsider Arrival
-  Event: A group of outsiders arrives at your city, seeking shelter and assistance.
+  Event: A group of outsiders Alien arrives at your shelter
   EventChoices:
   - Welcome them with open arms
   - Turn them away

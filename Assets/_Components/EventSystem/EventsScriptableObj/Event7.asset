@@ -15,6 +15,6 @@ MonoBehaviour:
   EventTitle: Hole in tank
   Event: A hole was opened in the oxygen tank
   EventChoices:
-  - Send peoples to close hole(Probably y
+  - Send people to close hole(Probably y
   - Oxygen consumption increased by 10
-  Background: {fileID: 0}
+  Background: {fileID: 21300000, guid: b1716d4bb1d672948b4eca96fe80d7d7, type: 3}

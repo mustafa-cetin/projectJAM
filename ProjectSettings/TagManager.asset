@@ -56,3 +56,6 @@ TagManager:
   - name: citizen
     uniqueID: 3328174221
     locked: 0
+  - name: panel
+    uniqueID: 2507548887
+    locked: 0

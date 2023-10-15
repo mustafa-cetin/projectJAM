@@ -13,13 +13,21 @@ public class CitizenGenerator : MonoBehaviour
 
     public Citizen selectedCitizen;
 
-   // public GameObject textObject;
+    public GameObject panel;
+    public TMP_Text textObject;
     
 
     public void defineCitizen(){
+        BaseDefineCitizen(new Vector3(-12,-1.25f,0));
 
+    }
+    public void defineCitizenP(Vector3 position){
+
+        BaseDefineCitizen(position);
+    }
+    public void BaseDefineCitizen(Vector3 position){
         Citizen citizen = Instantiate(citizenObject);
-        
+        citizen.transform.position=position;
         citizen.state = "Idle";
         citizen.citizenName = GenerateRandomName();
         citizen.strength = Random.Range(1,11);
@@ -28,7 +36,25 @@ public class CitizenGenerator : MonoBehaviour
         citizen.endurance = Random.Range(1,11);
         
         Shelter.Instance.citizens.Add(citizen);
+    }
+    public void ShowStatPanel(){
+                panel.gameObject.SetActive(true);
 
+                    string name = selectedCitizen.citizenName;
+                    int endu = selectedCitizen.endurance;
+                    int cook = selectedCitizen.cooking;
+                    int intel = selectedCitizen.intel;
+                    int strength = selectedCitizen.strength;
+                    
+                    Debug.Log("name");
+                    Debug.Log(name);
+                    Debug.Log("name");
+                    textObject.text = "Name : " + name + "\nEndurance : " + endu + "\nCooking : " + cook + "\nIntelligence : " + intel + "\nStrength : " + strength; 
+
+    }
+    public void HideStatPanel(){
+        
+                panel.gameObject.SetActive(false);
     }
     private void  Update() {
         if (Input.GetMouseButtonDown(0))
@@ -50,25 +76,14 @@ public class CitizenGenerator : MonoBehaviour
                 Citizen clickedCitizen=hit.transform.GetComponent<Citizen>();
 
                 /*
-                textObject.SetActive(true);
-
-                    string name = clickedCitizen.citizenName;
-                    int endu = clickedCitizen.endurance;
-                    int cook = clickedCitizen.cooking;
-                    int intel = clickedCitizen.intel;
-                    int strength = clickedCitizen.strength;
-                    
-                    Debug.Log("name");
-                    Debug.Log(name);
-                    Debug.Log("name");
-                    textObject.GetComponent<TextMeshPro>().text = "Name : " + name + "\nEndurance : " + endu + "\nCooking : " + cook + "\nIntelligence : " + intel + "\nStrength : " + strength; 
+                
                     */
 
                 
             if (clickedCitizen==selectedCitizen)
             {
                 
-                
+                HideStatPanel();
                 Shelter.Instance.currentMode=Mode.None;
                 selectedCitizen.ChangeSelectedValue(false);
                 selectedCitizen=null;
@@ -82,16 +97,10 @@ public class CitizenGenerator : MonoBehaviour
                 }
 
                 selectedCitizen=clickedCitizen;
-            
+                ShowStatPanel();
                 selectedCitizen.ChangeSelectedValue(true);
                 Shelter.Instance.currentMode=Mode.Character;
             }
-
-            }
-            else
-            {
-                
-                
             }
         }else if(Shelter.Instance.currentMode==Mode.Character)
         {
@@ -100,6 +109,8 @@ public class CitizenGenerator : MonoBehaviour
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
             if (roomManager.GetRoom(worldPosition)!=null)
             {
+
+                HideStatPanel();
             Room clickedRoom = roomManager.GetRoom(worldPosition);
                 if (selectedCitizen.currentRoom!=null)
                 {
@@ -108,7 +119,7 @@ public class CitizenGenerator : MonoBehaviour
                         selectedCitizen.currentRoom.GetComponent<ResourceRoom>().SetWorker(null);
                     }
                 }
-                
+
 
 
                 if (clickedRoom.CompareTag("ResourceRoom"))

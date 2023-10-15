@@ -9,6 +9,9 @@ public class AudioManager : MonoBehaviour
 
 [SerializeField]
     private AudioClip construction;
+    [SerializeField]
+    private AudioClip[] musics;
+
 
     private AudioSource audioSource;
 private void Awake() 
@@ -26,6 +29,21 @@ private void Awake()
 }
 private void Start() {
     audioSource=GetComponent<AudioSource>();
+    StartCoroutine(startMusic());
+
+}
+IEnumerator startMusic(){
+
+    foreach (var item in musics)
+    {
+        audioSource.clip=musics[0];
+        audioSource.Play();
+        yield return new WaitUntil(
+        () => !audioSource.isPlaying 
+              && Time.timeScale != 0 
+        ); 
+        yield return new WaitForSeconds(30f);
+    }
 }
 public void PlayConstructionSound(){
     audioSource.PlayOneShot(construction);

@@ -23,6 +23,9 @@ public class OxygenRoom : ResourceRoom
             Shelter.Instance.ChangeElectric(-1*1);
             Shelter.Instance.ChangeFood(-1*1);
         }
+        }else
+        {
+            timer=Time.time;
         }
     }
 }

@@ -22,6 +22,9 @@ public class KitchenRoom : ResourceRoom
             Shelter.Instance.ChangeFood(3);
             Shelter.Instance.ChangeElectric(-1*2);
         }
+        }else
+        {
+            timer=Time.time;
         }
     }
 

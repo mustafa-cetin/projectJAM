@@ -40,6 +40,7 @@ private void Awake()
 
     public string timeText;
     public int Day{get;private set;}
+    public GameObject ending;
 
     private void Start() {
         Food=100;
@@ -48,13 +49,21 @@ private void Awake()
         Metal=100;
         timer=Time.time;
         Day=0;
+        ending.SetActive(false);
 
     }
     private void Update() {
+
+        if (Oxygen<=0 || Electric<=0 || Metal<=0 || Food<=0 || rebel>=100)
+        {
+        ending.SetActive(true);
+            Time.timeScale=0;
+        }
+
         if (Time.time>=48f+timer)
         {
             ChangeFood(-1*citizens.Count*10);
-            ChangeOxygen(-1*citizens.Count*5);
+            ChangeOxygen(-1*citizens.Count*10);
             Day++;
             timer=Time.time;
         }

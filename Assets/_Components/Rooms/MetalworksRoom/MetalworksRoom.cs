@@ -17,7 +17,7 @@ public class MetalworksRoom : ResourceRoom
         
         if (Worker!=null)
         {
-        if (Time.time>=betweenTimeCount+timer && Shelter.Instance.Electric>=5 && ready)
+        if (Time.time>=betweenTimeCount+timer && Shelter.Instance.Electric>=10 && ready)
         {
             timer=Time.time;
             Shelter.Instance.ChangeMetal(5);

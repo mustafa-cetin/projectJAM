@@ -98,4 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requirements: {fileID: 11400000, guid: 7ea20d75e9d29a8498b5050477eea3b6, type: 2}
-  betweenTimeCount: 5
+  level: 0
+  levelSprites: []
+  roomRequirementsByLevel: []
+  betweenTimeCount: 1

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e3edd9b709b1d4c9778b162a9321e1, type: 3}
   m_Name: LadderRoomRequirement
   m_EditorClassIdentifier: 
-  electric: 0
-  water: 0
+  electric: 20
+  metal: 20
   food: 0
   oxygen: 0

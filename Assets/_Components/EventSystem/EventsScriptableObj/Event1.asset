@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8303cffdda1ccff42abbdca089779e33, type: 3}
   m_Name: Event1
   m_EditorClassIdentifier: 
-  EventTitle: Resource Scarcity
-  Event: Your city faces a severe shortage of a crucial resource (e.g., food, fuel,
-    or medicine). Citizens are getting desperate.
+  EventTitle: Rebel Thread
+  Event: There is a president who will be a fair rival to you.
   EventChoices:
-  - Implement rationing
-  - Send scouts to search for resources
+  - Murder
+  - Watch what will happen
+  Background: {fileID: 21300000, guid: ac016f36d47f9ff47b5fc92b4c08e8e9, type: 3}

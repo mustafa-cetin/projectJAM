@@ -20,16 +20,18 @@ public class Room : MonoBehaviour
         color=Color.black;
     }
     public virtual void Update(){
-        if (progress!=100f)
+        if (progress<10f)
         {
             progress+=5*Time.deltaTime;
             color=Color.HSVToRGB(0,0,progress/10);
             GetComponent<SpriteRenderer>().color=color;
+        }else{
+            ready=true;
         }
     }
     public bool IsBuildableTheTile(ShelterGrid shelterGrid,ShelterGridTile shelterGridTile){
         bool flag=false;
-        if (shelterGridTile.GetPosition().y!=10)
+        if (shelterGridTile.GetPosition().y!=shelterGrid.GetShelterGridSizeY()-1 && shelterGridTile.GetPosition().x!=0)
         {
            
         ShelterGridTile[] shelterGridLine=shelterGrid.GetGridTileLine(shelterGridTile.GetPosition().y+1);
@@ -38,7 +40,7 @@ public class Room : MonoBehaviour
             if (shelterGridTil.IsOccupied)
             {
                 
-            if (shelterGridTil.GetRoom().GetType()==GetType())
+            if (shelterGridTil.GetRoom().CompareTag("LadderRoom"))
             {
                 flag=true;
                 break;
@@ -58,7 +60,7 @@ public class Room : MonoBehaviour
         {
            return CheckValidation(shelterGrid,shelterGridTile);
         }
-
+    
         return false;
     }
     public virtual bool CheckValidation(ShelterGrid shelterGrid,ShelterGridTile shelterGridTile){

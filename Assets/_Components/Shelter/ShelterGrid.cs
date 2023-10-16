@@ -25,6 +25,9 @@ public class ShelterGrid : MonoBehaviour
             }
         }
     }
+    public int GetShelterGridSizeY(){
+        return shelterGridSizeY;
+    }
     private void Update() {
     }
     public Vector3 GetWorldPosition(Vector2Int position){

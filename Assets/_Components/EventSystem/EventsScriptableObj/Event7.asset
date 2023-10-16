@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8303cffdda1ccff42abbdca089779e33, type: 3}
   m_Name: Event7
   m_EditorClassIdentifier: 
-  EventTitle: Natural Disaster
-  Event: The shelter flooded
+  EventTitle: Hole in tank
+  Event: A hole was opened in the oxygen tank
   EventChoices:
-  - Let the citizens drain the water
-  - Strengthen the sewer system
+  - Send people to close hole(Probably y
+  - Oxygen consumption increased by 10
+  Background: {fileID: 21300000, guid: b1716d4bb1d672948b4eca96fe80d7d7, type: 3}

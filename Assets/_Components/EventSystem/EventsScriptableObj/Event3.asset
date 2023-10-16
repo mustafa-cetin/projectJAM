@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8303cffdda1ccff42abbdca089779e33, type: 3}
   m_Name: Event3
   m_EditorClassIdentifier: 
-  EventTitle: Epidemic Outbreak
-  Event: A deadly disease begins to spread among your citizens.
+  EventTitle: Discontent Rebellion
+  Event: Discontent among your citizens reaches a critical point, and they're threatening
+    to rebel.
   EventChoices:
-  - Isolate the sick
-  - Conduct medical research to find a cure
+  - Suppress the rebellion with force
+  - Distribute food to your people
+  Background: {fileID: 21300000, guid: 59645f802b0cfa94c860e30b2bc0966c, type: 3}

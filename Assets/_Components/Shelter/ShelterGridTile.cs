@@ -6,7 +6,6 @@ public class ShelterGridTile
 {
     private int x;
     private int y;
-    private bool buildable;
     private Room room;
     public bool IsOccupied{get;private set;}
 
@@ -21,7 +20,6 @@ public class ShelterGridTile
     public ShelterGridTile(int x,int y){
         this.x=x;
         this.y=y;
-        buildable=false;
         IsOccupied=false;
 
     }

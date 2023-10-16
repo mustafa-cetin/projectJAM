@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: OxygenRoomRequirement
   m_EditorClassIdentifier: 
   electric: 5
-  water: 5
+  metal: 15
   food: 5
-  oxygen: 0
+  oxygen: 5

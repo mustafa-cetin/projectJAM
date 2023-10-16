@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MetalworksRoom : BuildingRoom
+public class MetalworksRoom : ResourceRoom
 {
     [SerializeField]
     private float betweenTimeCount;
@@ -14,10 +14,16 @@ public class MetalworksRoom : BuildingRoom
     }
     public override void Update() {
         base.Update();
-        if (Time.time>=betweenTimeCount+timer && Shelter.Instance.electric>=5 && ready)
+        
+        if (Worker!=null)
+        {
+        if (Time.time>=betweenTimeCount+timer && Shelter.Instance.Electric>=10 && ready)
         {
             timer=Time.time;
-            Shelter.Instance.metal+=5;
+            Shelter.Instance.ChangeMetal(5);
+            
+            Shelter.Instance.ChangeElectric(-1*5);
+        }
         }
     }
 

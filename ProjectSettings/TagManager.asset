@@ -5,7 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - LadderRoom
-  - BuildingRoom
+  - Citizen
+  - ResourceRoom
   layers:
   - Default
   - TransparentFX
@@ -13,7 +14,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - UI Scene
   - 
   - 
   - 
@@ -43,9 +44,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: background
+    uniqueID: 3227913073
+    locked: 0
   - name: buildings
     uniqueID: 1863668975
     locked: 0
-  - name: background
-    uniqueID: 3227913073
+  - name: ground
+    uniqueID: 2809226051
+    locked: 0
+  - name: citizen
+    uniqueID: 3328174221
+    locked: 0
+  - name: panel
+    uniqueID: 2507548887
     locked: 0

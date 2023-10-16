@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OxygenRoom : BuildingRoom
+public class OxygenRoom : ResourceRoom
 {
     [SerializeField]
     private float betweenTimeCount;
@@ -14,10 +14,18 @@ public class OxygenRoom : BuildingRoom
     }
     public override void Update() {
         base.Update();
-        if (Time.time>=betweenTimeCount+timer && Shelter.Instance.electric>=5 && ready)
+        if (Worker!=null)
+        {
+        if (Time.time>=betweenTimeCount+timer && Shelter.Instance.Electric>=5 && ready)
         {
             timer=Time.time;
-            Shelter.Instance.oxygen+=5;
+            Shelter.Instance.ChangeOxygen(Random.Range(1,Worker.endurance));
+            Shelter.Instance.ChangeElectric(-1*1);
+            Shelter.Instance.ChangeFood(-1*1);
+        }
+        }else
+        {
+            timer=Time.time;
         }
     }
 }

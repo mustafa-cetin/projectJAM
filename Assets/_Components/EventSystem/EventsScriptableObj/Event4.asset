@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8303cffdda1ccff42abbdca089779e33, type: 3}
   m_Name: Event4
   m_EditorClassIdentifier: 
-  EventTitle: Discontent Rebellion
-  Event: Discontent among your citizens reaches a critical point, and they're threatening
-    to rebel.
+  EventTitle: Natural Disaster
+  Event: The shelter flooded
   EventChoices:
-  - Suppress the rebellion with force
-  - Negotiate with the leaders
+  - Let the citizens drain the water
+  - Strengthen the sewer system
+  Background: {fileID: 21300000, guid: 8bc6d35ea3e451041bab575b5b0e01a3, type: 3}

@@ -43,10 +43,10 @@ private void Awake()
     public GameObject ending;
 
     private void Start() {
-        Food=100;
-        Electric=100;
-        Oxygen=100;
-        Metal=100;
+        Food=999999;
+        Electric=999999;
+        Oxygen=999999;
+        Metal=999999;
         timer=Time.time;
         Day=0;
         ending.SetActive(false);

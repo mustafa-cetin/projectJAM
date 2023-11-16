@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,24 +11,45 @@ public class CameraControl : MonoBehaviour
     public float zoomSpeed = 2.0f; // Adjust this to change the zoom speed
     private Vector3 velocity = Vector3.zero;
 
+
+
+    private float horizontalInput;
+    private float verticalInput;
+
+    private float scroll;
+    private Camera camera;
+    private Vector3 targetPosition;
+    private void Start()
+    {
+        camera=Camera.main;;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        horizontalInput = Input.GetAxis("Horizontal");
+        verticalInput = Input.GetAxis("Vertical");
 
-        Vector3 targetPosition = transform.position;
+        
+        // Zooming in and out with the mouse scroll wheel
+        scroll = Input.GetAxis("Mouse ScrollWheel");
+    }
+
+    private void LateUpdate()
+    {
+        
+        targetPosition = transform.position;
 
         // Moving up and down
         if (Mathf.Abs(verticalInput) > 0)
         {
-            targetPosition += transform.up * verticalInput * speed * Time.deltaTime;
+            targetPosition += transform.up * verticalInput * speed;
         }
 
         // Moving left and right
         if (Mathf.Abs(horizontalInput) > 0)
         {
-            targetPosition += transform.right * horizontalInput * speed * Time.deltaTime;
+            targetPosition += transform.right * horizontalInput * speed;
         }
 
         // Clamping the camera within the boundary
@@ -35,15 +57,11 @@ public class CameraControl : MonoBehaviour
         targetPosition.y = Mathf.Clamp(targetPosition.y, -boundary, boundary);
 
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
-    
+
         
-        // Zooming in and out with the mouse scroll wheel
-        float scroll = Input.GetAxis("Mouse ScrollWheel");
         if (scroll != 0.0f)
         {
-            Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize - scroll * zoomSpeed, 5f, 15f);
+            camera.orthographicSize = Mathf.Clamp(camera.orthographicSize - scroll * zoomSpeed, 5f, 15f);
         }
     }
-
-
 }

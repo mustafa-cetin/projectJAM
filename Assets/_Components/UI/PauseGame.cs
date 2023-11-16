@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,9 +9,11 @@ public class PauseGame : MonoBehaviour
 
     public GameObject panel;
 
-    //public GameObject Canvas;
+    private void Start()
+    {
+        panel.SetActive(false);
+    }
 
-    public GameObject Start;
     void Update()
     {
         // "ESC" tuşuna basıldığında oyunun durumu değiştirilir (durdurulur veya devam ettirilir).
@@ -21,14 +24,12 @@ public class PauseGame : MonoBehaviour
                 ResumeGame();
                 panel.SetActive(false);
               //  Canvas.SetActive(true);
-                Start.SetActive(false);
             }
             else
             {
                 Pause();
                 panel.SetActive(true);
                // Canvas.SetActive(false);
-                Start.SetActive(true);
 
             }
         }

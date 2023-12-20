@@ -17,7 +17,7 @@ public class PauseGame : MonoBehaviour
     void Update()
     {
         // "ESC" tuşuna basıldığında oyunun durumu değiştirilir (durdurulur veya devam ettirilir).
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             if (isPaused)
             {
@@ -40,6 +40,7 @@ public class PauseGame : MonoBehaviour
     {
         Time.timeScale = 0; // Zamanı duraklatır, bu da oyunu duraklatır.
         isPaused = true;
+        AudioManager.Instance.PauseMusic();
         // İsterseniz burada başka işlemler de ekleyebilirsiniz.
     }
 
@@ -48,6 +49,7 @@ public class PauseGame : MonoBehaviour
     {
         Time.timeScale = 1; // Zamanı gerçek zamanlı hızda devam ettirir.
         isPaused = false;
+        AudioManager.Instance.PlayMusic();
         // İsterseniz burada başka işlemler de ekleyebilirsiniz.
     }
 }

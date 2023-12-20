@@ -21,7 +21,7 @@ public class CameraControl : MonoBehaviour
     private Vector3 targetPosition;
     private void Start()
     {
-        camera=Camera.main;;
+        camera = GetComponent<Camera>();
     }
 
     // Update is called once per frame
@@ -32,7 +32,11 @@ public class CameraControl : MonoBehaviour
 
         
         // Zooming in and out with the mouse scroll wheel
-        scroll = Input.GetAxis("Mouse ScrollWheel");
+        scroll = 0f;
+        if (Time.timeScale != 0f)
+        {
+            scroll = Input.GetAxis("Mouse ScrollWheel");
+        }
     }
 
     private void LateUpdate()

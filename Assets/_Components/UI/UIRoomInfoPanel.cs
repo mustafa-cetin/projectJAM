@@ -9,6 +9,9 @@ public class UIRoomInfoPanel : MonoBehaviour
     [SerializeField] private TMP_Text electricText;
     [SerializeField] private TMP_Text metalText;
     [SerializeField] private TMP_Text oxygenText;
+    private void Start() {
+        gameObject.SetActive(false);
+    }
     public void FillInfoPanelWithRequirement(RoomRequirement roomRequirement){
         foodText.text=roomRequirement.food.ToString();
         electricText.text=roomRequirement.electric.ToString();

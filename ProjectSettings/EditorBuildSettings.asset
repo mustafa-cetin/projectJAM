@@ -5,15 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
-    path: Assets/Scenes/Events.unity
-    guid: 018fd36e801e73e49a6f6d6a72de2721
-  - enabled: 0
-    path: Assets/Scenes/Emre 2.unity
-    guid: 6a39dc7253c32ea4d8de7c1520323376
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: d6bc8c19a981d9f44932dd6a7b803ba4
   - enabled: 1
     path: Assets/Scenes/HexaScene.unity
     guid: 35f8b71b8b2333e49b059675334c1dd1

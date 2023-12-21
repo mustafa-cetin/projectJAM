@@ -97,7 +97,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc8424bcb397a924baadd52aa2b8b93b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requirements: {fileID: 11400000, guid: 7ea20d75e9d29a8498b5050477eea3b6, type: 2}
+  requirements:
+    electric: 10
+    metal: 10
+    food: 0
+    oxygen: 10
   level: 0
   levelSprites: []
   roomRequirementsByLevel: []

@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class LabRoom : ResourceRoom
 {
-    [SerializeField]
-    private float betweenTimeCount;
+
 
     private CitizenGenerator citizenGenerator;
-
-
-    private float timer;
     public override void Start() {
         base.Start();
         timer=Time.time;
-        citizenGenerator=FindAnyObjectByType<CitizenGenerator>(); 
+        citizenGenerator=FindAnyObjectByType<CitizenGenerator>();
     }
     public override void Update() {
         base.Update();
@@ -26,8 +22,9 @@ public class LabRoom : ResourceRoom
             Vector3 position=transform.position;
             position.y-=1.5f;
             citizenGenerator.defineCitizenP(position);
-            Shelter.Instance.ChangeElectric(-15);
-            Shelter.Instance.ChangeFood(-101);
+            timer=Time.time;
+            DecreaseCostsFromResources();
+            AddIncomesToResources();
         }
         }else
         {

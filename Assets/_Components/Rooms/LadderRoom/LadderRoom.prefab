@@ -97,6 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e2dac4ba7ced63408ecea77f6d46b71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requirements: {fileID: 11400000, guid: 3064df0f10211c34da66cdb514f5a2d1, type: 2}
-  isWorking: 0
-  betweenTimeCount: 2
+  requirements:
+    electric: 50
+    metal: 50
+    food: 0
+    oxygen: 0

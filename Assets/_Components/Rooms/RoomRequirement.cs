@@ -1,12 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(menuName ="Room/Requirement")]
-public class RoomRequirement : ScriptableObject
+[Serializable]
+public class RoomRequirement
 {
-    
+
 public int electric;
 
 public int metal;

@@ -9,18 +9,18 @@ public class Shelter : MonoBehaviour
 [SerializeField]
     UIResourceManager uiResourceManager;
     public static Shelter Instance { get; private set; }
-private void Awake() 
-{ 
+private void Awake()
+{
     // If there is an instance, and it's not me, delete myself.
-    
-    if (Instance != null && Instance != this) 
-    { 
-        Destroy(this); 
-    } 
-    else 
-    { 
-        Instance = this; 
-    } 
+
+    if (Instance != null && Instance != this)
+    {
+        Destroy(this);
+    }
+    else
+    {
+        Instance = this;
+    }
 }
     public float timer;
     public List<Citizen> citizens;
@@ -32,7 +32,7 @@ private void Awake()
     public int Food{get;private set;}
 
     public int Oxygen{get;private set;}
-    
+
     public int Metal{get;private set;}
 
     [Range(0,100)]

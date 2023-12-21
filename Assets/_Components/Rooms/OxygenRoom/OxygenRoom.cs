@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class OxygenRoom : ResourceRoom
 {
-    [SerializeField]
-    private float betweenTimeCount;
 
-    private float timer;
     public override void Start() {
         base.Start();
         timer=Time.time;

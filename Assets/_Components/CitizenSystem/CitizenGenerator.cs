@@ -15,7 +15,7 @@ public class CitizenGenerator : MonoBehaviour
 
     public GameObject panel;
     public TMP_Text textObject;
-    
+
 
     public void defineCitizen(){
         BaseDefineCitizen(new Vector3(-12,-1.25f,0));
@@ -34,7 +34,7 @@ public class CitizenGenerator : MonoBehaviour
         citizen.intel = Random.Range(1,11);
         citizen.cooking = Random.Range(1,11);
         citizen.endurance = Random.Range(1,11);
-        
+
         Shelter.Instance.citizens.Add(citizen);
     }
     public void ShowStatPanel(){
@@ -45,15 +45,15 @@ public class CitizenGenerator : MonoBehaviour
                     int cook = selectedCitizen.cooking;
                     int intel = selectedCitizen.intel;
                     int strength = selectedCitizen.strength;
-                    
+
                     Debug.Log("name");
                     Debug.Log(name);
                     Debug.Log("name");
-                    textObject.text = "Name : " + name + "\nEndurance : " + endu + "\nCooking : " + cook + "\nIntelligence : " + intel + "\nStrength : " + strength; 
+                    textObject.text = "Name : " + name + "\nEndurance : " + endu + "\nCooking : " + cook + "\nIntelligence : " + intel + "\nStrength : " + strength;
 
     }
     public void HideStatPanel(){
-        
+
                 panel.gameObject.SetActive(false);
     }
     private void  Update() {
@@ -61,13 +61,13 @@ public class CitizenGenerator : MonoBehaviour
         {
             if (!EventSystem.current.IsPointerOverGameObject()) // Eğer UI üzerinde tıklama yoksa devam et
             {
-             
+
 
 
         if (Shelter.Instance.currentMode!=Mode.None && Shelter.Instance.currentMode!=Mode.Character) return;
 
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-        
+
         if(hit.collider != null)
         {
             if (hit.transform.CompareTag("Citizen"))
@@ -76,23 +76,22 @@ public class CitizenGenerator : MonoBehaviour
                 Citizen clickedCitizen=hit.transform.GetComponent<Citizen>();
 
                 /*
-                
+
                     */
 
-                
+
             if (clickedCitizen==selectedCitizen)
             {
-                
+
                 HideStatPanel();
                 Shelter.Instance.currentMode=Mode.None;
                 selectedCitizen.ChangeSelectedValue(false);
                 selectedCitizen=null;
+
             }else
             {
                 if (selectedCitizen!=null)
                 {
-                    
-
                     selectedCitizen.ChangeSelectedValue(false);
                 }
 
@@ -154,7 +153,7 @@ public class CitizenGenerator : MonoBehaviour
                     roomManager.GetLadderRoomCoordinatesByY(roomManager.GetElevation(targetRoomCoordinates)).y-1.5f,
                     selectedCitizen.transform.position.z);
                     // directly go room
-                    
+
                     targetRoomPositions[2]=new Vector3(targetRoomCoordinates.x,
                     targetRoomCoordinates.y-1.5f,
                     selectedCitizen.transform.position.z);

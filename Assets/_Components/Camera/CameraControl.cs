@@ -17,7 +17,7 @@ public class CameraControl : MonoBehaviour
     private float verticalInput;
 
     private float scroll;
-    private Camera camera;
+    private new Camera camera;
     private Vector3 targetPosition;
     private void Start()
     {
@@ -30,7 +30,7 @@ public class CameraControl : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
-        
+
         // Zooming in and out with the mouse scroll wheel
         scroll = 0f;
         if (Time.timeScale != 0f)
@@ -41,7 +41,7 @@ public class CameraControl : MonoBehaviour
 
     private void LateUpdate()
     {
-        
+
         targetPosition = transform.position;
 
         // Moving up and down
@@ -62,7 +62,7 @@ public class CameraControl : MonoBehaviour
 
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
 
-        
+
         if (scroll != 0.0f)
         {
             camera.orthographicSize = Mathf.Clamp(camera.orthographicSize - scroll * zoomSpeed, 5f, 15f);

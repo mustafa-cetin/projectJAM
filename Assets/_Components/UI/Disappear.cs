@@ -15,7 +15,6 @@ public class Disappear : MonoBehaviour
         if (Time.time>=1f+timer)
         {
             Destroy(gameObject);
-            
-        }        
+        }
     }
 }

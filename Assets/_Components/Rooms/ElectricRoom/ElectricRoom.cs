@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class ElectricRoom : ResourceRoom
 {
-    [SerializeField]
-    private float betweenTimeCount;
 
-    private float timer;
     public override void Start() {
         base.Start();
         timer=Time.time;
@@ -19,8 +16,8 @@ public class ElectricRoom : ResourceRoom
         if (Time.time>=betweenTimeCount+timer && Shelter.Instance.Food>=5 && ready)
         {
             timer=Time.time;
-            Shelter.Instance.ChangeElectric(8);
-            Shelter.Instance.ChangeFood(-2);
+            DecreaseCostsFromResources();
+            AddIncomesToResources();
         }
         }else
         {

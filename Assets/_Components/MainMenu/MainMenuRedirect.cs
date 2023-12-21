@@ -13,5 +13,7 @@ public class MainMenuRedirect : MonoBehaviour
    }
    public void GoGameScene(){
     SceneManager.LoadScene(1);
+   } public void GoTutorialScene(){
+    SceneManager.LoadScene(2);
    }
 }

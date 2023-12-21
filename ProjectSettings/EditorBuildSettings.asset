@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HexaScene.unity
     guid: 35f8b71b8b2333e49b059675334c1dd1
+  - enabled: 1
+    path: Assets/Scenes/TutorialScene.unity
+    guid: 3ee51b7dbd7d815409ad82472aa8dd73
   m_configObjects: {}

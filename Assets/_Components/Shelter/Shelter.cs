@@ -26,6 +26,11 @@ private void Awake()
     public List<Citizen> citizens;
 
     public Mode currentMode=Mode.None;
+    public IMode currentModeNew;
+    public BuildMode BuildMode{get;private set;}
+    public TerraformMode TerraformMode{get;private set;}
+     public CitizenMode CitizenMode{get;private set;}
+      public EmptyMode EmptyMode{get;private set;}
 
     public int Electric{get;private set;}
 
@@ -41,12 +46,21 @@ private void Awake()
     public string timeText;
     public int Day{get;private set;}
     public GameObject ending;
+    [SerializeField]
+    private Resource startingResources;
+
 
     private void Start() {
-        Food=100;
-        Electric=100;
-        Oxygen=100;
-        Metal=100;
+        EmptyMode=new EmptyMode();
+        Shelter.Instance.currentModeNew=Shelter.Instance.EmptyMode;
+        BuildMode= new BuildMode();
+        TerraformMode=new TerraformMode();
+        CitizenMode=new CitizenMode();
+
+        Food=startingResources.food;
+        Electric=startingResources.electric;
+        Oxygen=startingResources.oxygen;
+        Metal=startingResources.metal;
         timer=Time.time;
         Day=0;
         ending.SetActive(false);

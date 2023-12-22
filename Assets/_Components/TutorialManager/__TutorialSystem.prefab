@@ -1,0 +1,144 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1678590444481928249
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7888729097208136081}
+  - component: {fileID: 1948173960485867177}
+  m_Layer: 0
+  m_Name: __TutorialSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7888729097208136081
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678590444481928249}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1948173960485867177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678590444481928249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53ee9ba0391d9e848b6fbfefab8e18de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialPopUps:
+  - position: {x: 0, y: 0, z: 0}
+    info: Welcome to Terraformia. You were sent to this planet when the world was
+      on the brink of apocalypse. You will terraform this planet, make it livable
+      and revive the human race.
+    willDisableGOs:
+    - {fileID: 0}
+  - position: {x: 0, y: 0, z: 0}
+    info: If you're ready, let's begin.
+    willDisableGOs:
+    - {fileID: 0}
+  - position: {x: 0, y: 0, z: 0}
+    info: You can navigate the game with one finger. With two fingers you can zoom
+      in and out.
+    willDisableGOs:
+    - {fileID: 0}
+  - position: {x: 260, y: 140, z: 0}
+    info: Those on the top right are your resources for survival. Food, Electricity,
+      Metal, Oxygen. When these resources drop to zero, you lose.
+    willDisableGOs:
+    - {fileID: 0}
+  - position: {x: 289, y: -79, z: 0}
+    info: This section shows the time, day and which game mode you are currently
+      in.
+    willDisableGOs:
+    - {fileID: 0}
+  - position: {x: 0, y: -150, z: 0}
+    info: Rebel is a value that increases and decreases according to events. If it
+      is maxed, you lose.
+    willDisableGOs:
+    - {fileID: 0}
+  - position: {x: -161, y: -178, z: 0}
+    info: We've come to one of the core mechanics of the game, the room build. If
+      you click on this house, the build tab opens. If you looked at mode section.
+      Your mode changed to Build Mode. To exit close tab
+    willDisableGOs: []
+  - position: {x: 39, y: 62, z: 0}
+    info: Hold your finger on the room for 1 second to see the cost of building a
+      room.
+    willDisableGOs: []
+  - position: {x: 39, y: 62, z: 0}
+    info: Ladder room is the room you need to build other rooms on a certain floor.
+      You have to build it first.
+    willDisableGOs:
+    - {fileID: 0}
+  - position: {x: 39, y: 62, z: 0}
+    info: Click on it and the blue frame will appear. These frames show the parts
+      you can build. Click and build. (It will be built when the game starts.)
+    willDisableGOs:
+    - {fileID: 0}
+  - position: {x: 39, y: 62, z: 0}
+    info: Now build the metalworks room.
+    willDisableGOs:
+    - {fileID: 0}
+  - position: {x: 39, y: 62, z: 0}
+    info: Now build the metalworks room.
+    willDisableGOs:
+    - {fileID: 0}
+  - position: {x: 39, y: 62, z: 0}
+    info: Swipe left and go to the section with the citizens. Click on a citizen
+      and click on the metalworks room. It will start working. There will be benefits,
+      but there will also be costs. Be careful.
+    willDisableGOs:
+    - {fileID: 0}
+  - position: {x: 39, y: 62, z: 0}
+    info: Swipe left and go to the section with the citizens. Click on a citizen
+      and click on the metalworks room. It will start working. There will be benefits,
+      but there will also be costs. Be careful.
+    willDisableGOs:
+    - {fileID: 0}
+  - position: {x: 39, y: 62, z: 0}
+    info: Swipe left and go to the section with the citizens. Click on a citizen
+      and click on the metalworks room. It will start working. There will be benefits,
+      but there will also be costs. Be careful.
+    willDisableGOs:
+    - {fileID: 0}
+  - position: {x: 39, y: 62, z: 0}
+    info: Swipe left and go to the section with the citizens. Click on a citizen
+      and click on the metalworks room. It will start working. There will be benefits,
+      but there will also be costs. Be careful.
+    willDisableGOs:
+    - {fileID: 0}
+  - position: {x: 39, y: 62, z: 0}
+    info: Swipe left and go to the section with the citizens. Click on a citizen
+      and click on the metalworks room. It will start working. There will be benefits,
+      but there will also be costs. Be careful.
+    willDisableGOs:
+    - {fileID: 0}
+  - position: {x: 0, y: 0, z: 0}
+    info: Meanwhile, random events will come in the game. There is no careful selection
+      among these events. The choice you make can directly end the game.
+    willDisableGOs: []
+  popupTransform: {fileID: 0}
+  popupText: {fileID: 0}
+  currentTutorialPopUp:
+    position: {x: 0, y: 0, z: 0}
+    info: 
+    willDisableGOs: []

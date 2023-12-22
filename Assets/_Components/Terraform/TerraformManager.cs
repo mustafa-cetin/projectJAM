@@ -10,7 +10,7 @@ public class TerraformManager : MonoBehaviour
 
     private int terraformLevel=0;
     [SerializeField]
-    private RoomRequirement[] levelByRequirements;
+    private Resource[] levelByRequirements;
 
     [SerializeField]
     public GameObject panel;
@@ -32,27 +32,35 @@ public class TerraformManager : MonoBehaviour
     public SpriteRenderer background;
 
 
-    
+
     [SerializeField]
     public TMP_Text oxygen,metal,food,electric;
 
+
+    private void Start() {
+    }
     private void OnMouseDown() {
-        
+
             if (!EventSystem.current.IsPointerOverGameObject()) // Eğer UI üzerinde tıklama yoksa devam et
             {
-                if (Shelter.Instance.currentMode!=Mode.None && Shelter.Instance.currentMode!=Mode.TerraformPanel) return;
-                ShowPanel();
+                Shelter.Instance.TerraformMode.init(panel);
+                Shelter.Instance.currentModeNew.exitMode();
+                Shelter.Instance.currentModeNew=Shelter.Instance.TerraformMode;
+                Shelter.Instance.currentModeNew.enterMode();
                 FillRequirements();
             }
     }
+
     public void ShowPanel(){
         Shelter.Instance.currentMode=Mode.TerraformPanel;
         panel.SetActive(true);
     }
     public void HidePanel(){
+        Shelter.Instance.currentModeNew.exitMode();
         Shelter.Instance.currentMode=Mode.None;
         panel.SetActive(false);
     }
+
     public void FillRequirements(){
         oxygen.text=levelByRequirements[terraformLevel].oxygen.ToString();
         metal.text=levelByRequirements[terraformLevel].metal.ToString();
@@ -63,7 +71,7 @@ public class TerraformManager : MonoBehaviour
     public void UpdateEnvironment(){
         if (IsMaterialsEnough(levelByRequirements[terraformLevel]) && terraformLevel<3)
         {
-            
+
             DecreaseRequirements(levelByRequirements[terraformLevel]);
             stageIcons[terraformLevel].color=Color.yellow;
             ChangeBackground();ChangeTileGrounds();ChangeTileBackgrounds();
@@ -77,7 +85,7 @@ public class TerraformManager : MonoBehaviour
         }
     }
 
-    public void DecreaseRequirements(RoomRequirement roomRequirement){
+    public void DecreaseRequirements(Resource roomRequirement){
         Shelter.Instance.ChangeElectric(-1*roomRequirement.electric);
         Shelter.Instance.ChangeFood(-1*roomRequirement.food);
         Shelter.Instance.ChangeMetal(-1*roomRequirement.metal);
@@ -98,7 +106,7 @@ public class TerraformManager : MonoBehaviour
         }
         tileBackgrounds[terraformLevel].SetActive(true);
     }
-    public bool IsMaterialsEnough(RoomRequirement roomRequirement){
+    public bool IsMaterialsEnough(Resource roomRequirement){
          return Shelter.Instance.Food>=roomRequirement.food
           && Shelter.Instance.Electric>=roomRequirement.electric
            && Shelter.Instance.Metal>=roomRequirement.metal
@@ -108,8 +116,5 @@ public class TerraformManager : MonoBehaviour
         background.sprite=backgrounds[terraformLevel];
     }
 
-    void Update()
-    {
 
-    }
 }

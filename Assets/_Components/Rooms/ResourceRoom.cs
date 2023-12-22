@@ -6,17 +6,17 @@ public class ResourceRoom : Room
 {
     public int level;
     public Sprite[] levelSprites;
-    public RoomRequirement[] roomRequirementsByLevel;
+    public Resource[] roomRequirementsByLevel;
 
     [SerializeField]
     protected float betweenTimeCount;
 
     protected float timer;
 
-    [SerializeField]
-    protected RoomRequirement cost;
        [SerializeField]
-    protected RoomRequirement income;
+    protected Resource income;
+    [SerializeField]
+    protected Resource outgoing;
 
     public Citizen Worker{get;private set;}
 
@@ -56,10 +56,10 @@ public class ResourceRoom : Room
 
 
         protected void DecreaseCostsFromResources(){
-            Shelter.Instance.ChangeElectric(-cost.electric);
-            Shelter.Instance.ChangeOxygen(-cost.oxygen);
-            Shelter.Instance.ChangeMetal(-cost.metal);
-            Shelter.Instance.ChangeFood(-cost.food);
+            Shelter.Instance.ChangeElectric(-outgoing.electric);
+            Shelter.Instance.ChangeOxygen(-outgoing.oxygen);
+            Shelter.Instance.ChangeMetal(-outgoing.metal);
+            Shelter.Instance.ChangeFood(-outgoing.food);
         }
 
         protected void AddIncomesToResources(){

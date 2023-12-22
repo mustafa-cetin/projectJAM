@@ -6,7 +6,7 @@ public class Room : MonoBehaviour
 {
 
     protected bool ready;
-    public RoomRequirement requirements;
+    public Resource roomPrice;
 
     protected int width=1;
     protected int height=1;
@@ -33,25 +33,25 @@ public class Room : MonoBehaviour
         bool flag=false;
         if (shelterGridTile.GetPosition().y!=shelterGrid.GetShelterGridSizeY()-1 && shelterGridTile.GetPosition().x!=0)
         {
-           
+
         ShelterGridTile[] shelterGridLine=shelterGrid.GetGridTileLine(shelterGridTile.GetPosition().y+1);
         foreach (var shelterGridTil in shelterGridLine)
         {
             if (shelterGridTil.IsOccupied)
             {
-                
+
             if (shelterGridTil.GetRoom().CompareTag("LadderRoom"))
             {
                 flag=true;
                 break;
             }
-            
+
             }
-        } 
         }
-        
+        }
+
         else
-        
+
         {
             flag=true;
         }
@@ -60,7 +60,7 @@ public class Room : MonoBehaviour
         {
            return CheckValidation(shelterGrid,shelterGridTile);
         }
-    
+
         return false;
     }
     public virtual bool CheckValidation(ShelterGrid shelterGrid,ShelterGridTile shelterGridTile){

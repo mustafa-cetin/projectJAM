@@ -15,21 +15,8 @@ public class UIInfoPanel : MonoBehaviour
     {
         timeText.text=Shelter.Instance.timeText;
         dayText.text=Shelter.Instance.Day.ToString();
-        switch (Shelter.Instance.currentMode)
-        {
-            case Mode.None:
-                infoText.text="None";
-                break;
-            case Mode.Build:
-                infoText.text="Build Mode";
-                break;
-            case Mode.Character:
-                infoText.text="Character Movement Mode";
-                break;
-            case Mode.RoomEdit:
-                infoText.text="Room Edit Mode";
-                break;
-        }
+        infoText.text=Shelter.Instance.currentModeNew.ToString();
+
 
     }
 }

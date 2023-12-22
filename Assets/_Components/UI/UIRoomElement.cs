@@ -25,7 +25,7 @@ public class UIRoomElement : MonoBehaviour,IPointerEnterHandler, IPointerExitHan
     {
         // Fare öğenin üzerine geldiğinde çağrılır
         isMouseOver = true;
-        Invoke("OpenInfoPanel", .5f); // 2 saniye sonra info panelini aç
+        OpenInfoPanel();
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -43,8 +43,10 @@ public class UIRoomElement : MonoBehaviour,IPointerEnterHandler, IPointerExitHan
             if (infoPanel != null)
             {
                 infoPanel.gameObject.SetActive(true); // Info panelini aç
-                infoPanel.transform.position=transform.position+new Vector3(100,0,0);
-                infoPanel.FillInfoPanelWithRequirement(room.requirements);
+                Vector3 position=infoPanel.transform.localPosition;
+                position.y=transform.localPosition.y+80f;
+                infoPanel.transform.localPosition=position;
+                infoPanel.FillInfoPanelWithRequirement(room.roomPrice);
             }
         }
     }
@@ -55,6 +57,5 @@ public class UIRoomElement : MonoBehaviour,IPointerEnterHandler, IPointerExitHan
         {
             infoPanel.gameObject.SetActive(false); // Info panelini kapat
         }
-        CancelInvoke("OpenInfoPanel"); // Eğer 2 saniye beklenmeden çıkılırsa planlanmış açma işlemini iptal et
     }
 }

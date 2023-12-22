@@ -11,7 +11,7 @@ public class CitizenGenerator : MonoBehaviour
 
     public Citizen citizenObject;
 
-    public Citizen selectedCitizen;
+    public Citizen SelectedCitizen{get;private set;}
 
     public GameObject panel;
     public TMP_Text textObject;
@@ -38,13 +38,13 @@ public class CitizenGenerator : MonoBehaviour
         Shelter.Instance.citizens.Add(citizen);
     }
     public void ShowStatPanel(){
-                panel.gameObject.SetActive(true);
+                     panel.gameObject.SetActive(true);
 
-                    string name = selectedCitizen.citizenName;
-                    int endu = selectedCitizen.endurance;
-                    int cook = selectedCitizen.cooking;
-                    int intel = selectedCitizen.intel;
-                    int strength = selectedCitizen.strength;
+                    string name = SelectedCitizen.citizenName;
+                    int endu = SelectedCitizen.endurance;
+                    int cook = SelectedCitizen.cooking;
+                    int intel = SelectedCitizen.intel;
+                    int strength = SelectedCitizen.strength;
 
                     Debug.Log("name");
                     Debug.Log(name);
@@ -62,10 +62,6 @@ public class CitizenGenerator : MonoBehaviour
             if (!EventSystem.current.IsPointerOverGameObject()) // Eğer UI üzerinde tıklama yoksa devam et
             {
 
-
-
-        if (Shelter.Instance.currentMode!=Mode.None && Shelter.Instance.currentMode!=Mode.Character) return;
-
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
         if(hit.collider != null)
@@ -80,29 +76,36 @@ public class CitizenGenerator : MonoBehaviour
                     */
 
 
-            if (clickedCitizen==selectedCitizen)
+            if (clickedCitizen==SelectedCitizen)
             {
 
-                HideStatPanel();
-                Shelter.Instance.currentMode=Mode.None;
-                selectedCitizen.ChangeSelectedValue(false);
-                selectedCitizen=null;
+                Shelter.Instance.CitizenMode.init(panel,this);
+                Shelter.Instance.currentModeNew.exitMode();
 
-            }else
+            }
+            else
             {
-                if (selectedCitizen!=null)
+
+                Shelter.Instance.CitizenMode.init(panel,this);
+                Shelter.Instance.currentModeNew.exitMode();
+                if (SelectedCitizen!=null)
                 {
-                    selectedCitizen.ChangeSelectedValue(false);
+                    SelectedCitizen.ChangeSelectedValue(false);
                 }
+                SelectedCitizen=clickedCitizen;
+                Shelter.Instance.currentModeNew=Shelter.Instance.CitizenMode;
+                Shelter.Instance.currentModeNew.enterMode();
+            }
+            }
 
-                selectedCitizen=clickedCitizen;
-                ShowStatPanel();
-                selectedCitizen.ChangeSelectedValue(true);
-                Shelter.Instance.currentMode=Mode.Character;
-            }
-            }
-        }else if(Shelter.Instance.currentMode==Mode.Character)
+        }
+
+
+        else if(Shelter.Instance.currentModeNew.Equals(Shelter.Instance.CitizenMode))
+
         {
+
+
             Vector3 mousePosition = Input.mousePosition;
             mousePosition.z = Camera.main.nearClipPlane;
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
@@ -111,11 +114,11 @@ public class CitizenGenerator : MonoBehaviour
 
                 HideStatPanel();
             Room clickedRoom = roomManager.GetRoom(worldPosition);
-                if (selectedCitizen.currentRoom!=null)
+                if (SelectedCitizen.currentRoom!=null)
                 {
-                    if (selectedCitizen.currentRoom.CompareTag("ResourceRoom"))
+                    if (SelectedCitizen.currentRoom.CompareTag("ResourceRoom"))
                     {
-                        selectedCitizen.currentRoom.GetComponent<ResourceRoom>().SetWorker(null);
+                        SelectedCitizen.currentRoom.GetComponent<ResourceRoom>().SetWorker(null);
                     }
                 }
 
@@ -127,40 +130,40 @@ public class CitizenGenerator : MonoBehaviour
                     {
                         return;
                     }else{
-                        clickedRoom.GetComponent<ResourceRoom>().SetWorker(selectedCitizen);
+                        clickedRoom.GetComponent<ResourceRoom>().SetWorker(SelectedCitizen);
                     }
                 }
 
                 Vector3 targetRoomCoordinates=roomManager.GetRoomCoordinates(worldPosition);
                 Vector3[] targetRoomPositions;
 
-                if (roomManager.GetElevation(targetRoomCoordinates)==roomManager.GetElevation(selectedCitizen.transform.position))
+                if (roomManager.GetElevation(targetRoomCoordinates)==roomManager.GetElevation(SelectedCitizen.transform.position))
                 {
 
                     //DIRECTLY GO ROOM
-                targetRoomPositions=new Vector3[]{new Vector3(targetRoomCoordinates.x,selectedCitizen.transform.position.y,selectedCitizen.transform.position.z)};
+                targetRoomPositions=new Vector3[]{new Vector3(targetRoomCoordinates.x,SelectedCitizen.transform.position.y,SelectedCitizen.transform.position.z)};
 
                 }else{
                     if (Shelter.Instance.Electric<=10) return;
                     // selected citizen go to own elevation ladder room
                     targetRoomPositions=new Vector3[3];
                     targetRoomPositions[0]=new Vector3(
-                        roomManager.GetLadderRoomCoordinatesByY(roomManager.GetElevation(selectedCitizen.transform.position)).x,
-                        selectedCitizen.transform.position.y,
-                        selectedCitizen.transform.position.z);
+                        roomManager.GetLadderRoomCoordinatesByY(roomManager.GetElevation(SelectedCitizen.transform.position)).x,
+                        SelectedCitizen.transform.position.y,
+                        SelectedCitizen.transform.position.z);
                     // teleport
                     targetRoomPositions[1]=new Vector3(roomManager.GetLadderRoomCoordinatesByY(roomManager.GetElevation(targetRoomCoordinates)).x,
                     roomManager.GetLadderRoomCoordinatesByY(roomManager.GetElevation(targetRoomCoordinates)).y-1.5f,
-                    selectedCitizen.transform.position.z);
+                    SelectedCitizen.transform.position.z);
                     // directly go room
 
                     targetRoomPositions[2]=new Vector3(targetRoomCoordinates.x,
                     targetRoomCoordinates.y-1.5f,
-                    selectedCitizen.transform.position.z);
+                    SelectedCitizen.transform.position.z);
 
                 }
-                    selectedCitizen.SetTargetPosition(targetRoomPositions);
-                     selectedCitizen.currentRoom=clickedRoom;
+                    SelectedCitizen.SetTargetPosition(targetRoomPositions);
+                     SelectedCitizen.currentRoom=clickedRoom;
             }
         }
 
@@ -192,5 +195,8 @@ public class CitizenGenerator : MonoBehaviour
         for(int i=0;i<4;i++){
             defineCitizen();
         }
+    }
+    public void SetSelectedCitizenNull(){
+        SelectedCitizen=null;
     }
 }

@@ -12,7 +12,7 @@ public class UIRoomInfoPanel : MonoBehaviour
     private void Start() {
         gameObject.SetActive(false);
     }
-    public void FillInfoPanelWithRequirement(RoomRequirement roomRequirement){
+    public void FillInfoPanelWithRequirement(Resource roomRequirement){
         foodText.text=roomRequirement.food.ToString();
         electricText.text=roomRequirement.electric.ToString();
         metalText.text=roomRequirement.metal.ToString();

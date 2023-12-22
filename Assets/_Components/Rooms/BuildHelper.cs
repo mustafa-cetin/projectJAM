@@ -12,7 +12,7 @@ public class BuildHelper : MonoBehaviour
     Transform referencePrefab;
     List<Transform> references;
 
-    
+
 
     [SerializeField]
     Transform referenceHolder;
@@ -25,7 +25,7 @@ public class BuildHelper : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && Shelter.Instance.currentMode==Mode.Build && roomManager.SelectedRoomType!=null)
+        if (Input.GetMouseButtonDown(0) && Shelter.Instance.currentModeNew.Equals(Shelter.Instance.BuildMode) && roomManager.SelectedRoomType!=null)
         {
             if (!EventSystem.current.IsPointerOverGameObject()) // Eğer UI üzerinde tıklama yoksa devam et
             {
@@ -36,7 +36,7 @@ public class BuildHelper : MonoBehaviour
             {
                 roomManager.BuildRoom(shelterGrid.GetShelterGridTileWorldPosition(worldPosition));
             }
-            
+
             }
         }
     }
@@ -47,9 +47,9 @@ public class BuildHelper : MonoBehaviour
         return !tile.IsOccupied
          && roomManager.CheckNeighboursIsOccupied(tile.GetPosition())
           && roomManager.SelectedRoomType.IsBuildableTheTile(shelterGrid,tile)
-           && IsMaterialsEnough(roomManager.SelectedRoomType.requirements);
+           && IsMaterialsEnough(roomManager.SelectedRoomType.roomPrice);
     }
-    public bool IsMaterialsEnough(RoomRequirement roomRequirement){
+    public bool IsMaterialsEnough(Resource roomRequirement){
          return Shelter.Instance.Food>=roomRequirement.food
           && Shelter.Instance.Electric>=roomRequirement.electric
            && Shelter.Instance.Metal>=roomRequirement.metal
@@ -58,7 +58,7 @@ public class BuildHelper : MonoBehaviour
     public void ShowBuildablePlaces(){
         RemoveReferences();
         bool[,] buildableAreas=shelterGrid.GetBuildableAreaOnGrid(roomManager.SelectedRoomType);
-        
+
         for (int x = 0; x < buildableAreas.GetLength(0); x++)
         {
             for (int y = 0; y < buildableAreas.GetLength(1); y++)
@@ -67,7 +67,7 @@ public class BuildHelper : MonoBehaviour
                 {
                     Transform reference=Instantiate(referencePrefab,referenceHolder);
                     reference.transform.position=shelterGrid.GetWorldPosition(new Vector2Int(x,y));
-                    references.Add(reference); 
+                    references.Add(reference);
                 }
             }
         }
@@ -85,7 +85,6 @@ public class BuildHelper : MonoBehaviour
             Shelter.Instance.currentMode=Mode.None;
             RemoveReferences();
         }else{
-            Shelter.Instance.currentMode=Mode.Build;
             roomManager.SetSelectedRoomType(null);
         }
     }

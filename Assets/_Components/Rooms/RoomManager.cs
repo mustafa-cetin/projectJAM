@@ -14,7 +14,7 @@ public class RoomManager : MonoBehaviour
     private BuildHelper buildHelper;
 
 
-    
+
 
     public Vector3 GetRoomCoordinates(Vector3 position){
         return shelterGrid.GetWorldPosition(shelterGrid.GetGridTilePosition(position));
@@ -39,7 +39,7 @@ public class RoomManager : MonoBehaviour
         }
         return Vector3.zero;
     }
-    
+
     void Start()
     {
         buildHelper=GetComponent<BuildHelper>();
@@ -51,16 +51,16 @@ public class RoomManager : MonoBehaviour
     public void BuildRoom(ShelterGridTile tile){
         if (buildHelper.CanBuild(tile))
         {
-            
+
             Debug.Log("selected");
             tile.SetIsOccupied(true);
             AudioManager.Instance.PlayConstructionSound();
-            DecreaseRequirements(SelectedRoomType.requirements);
+            DecreaseRequirements(SelectedRoomType.roomPrice);
 
             Room buildedRoom=Instantiate(SelectedRoomType,transform);
             tile.SetRoom(buildedRoom);
             buildedRoom.transform.position=shelterGrid.GetWorldPosition(tile.GetPosition());
-            if (Shelter.Instance.currentMode==Mode.Build)
+            if (Shelter.Instance.currentModeNew.Equals(Shelter.Instance.BuildMode))
             {
                 buildHelper.ShowBuildablePlaces();
             }
@@ -85,21 +85,21 @@ public class RoomManager : MonoBehaviour
                 Room clickedRoom = GetRoom(worldPosition);
                 if (true)
                 {
-                    
+
                 }
-            
+
             }
 
 
 
-            
+
             }
         }
         */
     }
 
 
-    public void DecreaseRequirements(RoomRequirement roomRequirement){
+    public void DecreaseRequirements(Resource roomRequirement){
         Shelter.Instance.ChangeElectric(-1*roomRequirement.electric);
         Shelter.Instance.ChangeFood(-1*roomRequirement.food);
         Shelter.Instance.ChangeMetal(-1*roomRequirement.metal);
@@ -113,15 +113,15 @@ public class RoomManager : MonoBehaviour
         {
             return true;
         }
-        
+
         return false;
-        
-            
-        
+
+
+
     }
 
     public bool CheckNeighboursIsOccupied(Vector2Int position){
-        
+
         if (position.y==shelterGrid.GetShelterGridSizeY()-1 && position.x==0)
         {
             return true;
@@ -136,7 +136,7 @@ public class RoomManager : MonoBehaviour
             }
             return false;
     }
-    
+
     public int GetRoomCount(){
         return 0;
     }

@@ -97,12 +97,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3954ccac928b3343850f1dee5ce0c99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requirements:
-    electric: 10
-    metal: 5
-    food: 10
-    oxygen: 10
+  roomPrice:
+    electric: 5
+    metal: 20
+    food: 5
+    oxygen: 5
   level: 0
   levelSprites: []
   roomRequirementsByLevel: []
-  betweenTimeCount: 5
+  betweenTimeCount: 10
+  income:
+    electric: 0
+    metal: 20
+    food: 0
+    oxygen: 0
+  outgoing:
+    electric: 5
+    metal: 0
+    food: 5
+    oxygen: 5

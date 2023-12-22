@@ -7,7 +7,6 @@ public class UIBuildManager : MonoBehaviour
     [SerializeField]
     private BuildHelper buildHelper;
 
-
     [SerializeField]
     private GameObject roomsPanel;
     private void Start() {
@@ -15,20 +14,20 @@ public class UIBuildManager : MonoBehaviour
     }
 
     public void SwitchBuildMode(){
-        if (Shelter.Instance.currentMode!=Mode.None && Shelter.Instance.currentMode!=Mode.Build) return;
-
-        if (Shelter.Instance.currentMode==Mode.Build)
+        Shelter.Instance.BuildMode.init(buildHelper,roomsPanel);
+        if (!Shelter.Instance.currentModeNew.Equals(Shelter.Instance.BuildMode))
         {
-            buildHelper.SetBuildMode(false);
-            roomsPanel.SetActive(false);
+             Shelter.Instance.currentModeNew.exitMode();
+            Shelter.Instance.currentModeNew=Shelter.Instance.BuildMode;
+            Shelter.Instance.currentModeNew.enterMode();
         }else{
-            buildHelper.SetBuildMode(true);
-            roomsPanel.SetActive(true);
+            Shelter.Instance.currentModeNew.exitMode();
         }
     }
 
     public void SetSelectedRoom(UIRoomElement roomElement){
-        if (Shelter.Instance.currentMode==Mode.Build)
+
+        if (Shelter.Instance.currentModeNew.Equals(Shelter.Instance.BuildMode))
         {
         buildHelper.RemoveReferences();
         buildHelper.SetSelectedRoom(roomElement.room);

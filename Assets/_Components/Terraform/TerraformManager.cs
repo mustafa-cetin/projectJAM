@@ -44,20 +44,18 @@ public class TerraformManager : MonoBehaviour
             if (!EventSystem.current.IsPointerOverGameObject()) // Eğer UI üzerinde tıklama yoksa devam et
             {
                 Shelter.Instance.TerraformMode.init(panel);
-                Shelter.Instance.currentModeNew.exitMode();
-                Shelter.Instance.currentModeNew=Shelter.Instance.TerraformMode;
-                Shelter.Instance.currentModeNew.enterMode();
+                Shelter.Instance.currentMode.exitMode();
+                Shelter.Instance.currentMode=Shelter.Instance.TerraformMode;
+                Shelter.Instance.currentMode.enterMode();
                 FillRequirements();
             }
     }
 
     public void ShowPanel(){
-        Shelter.Instance.currentMode=Mode.TerraformPanel;
         panel.SetActive(true);
     }
     public void HidePanel(){
-        Shelter.Instance.currentModeNew.exitMode();
-        Shelter.Instance.currentMode=Mode.None;
+        Shelter.Instance.currentMode.exitMode();
         panel.SetActive(false);
     }
 

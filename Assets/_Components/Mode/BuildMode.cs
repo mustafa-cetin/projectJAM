@@ -6,24 +6,27 @@ public class BuildMode : IMode
 {
     private BuildHelper buildHelper;
     private GameObject roomsPanel;
+    private GameObject closeButton;
     public override string ToString()
     {
         return "Build Mode";
     }
 
-    public void init(BuildHelper buildHelper,GameObject roomsPanel){
+    public void init(BuildHelper buildHelper,GameObject roomsPanel,GameObject closeButton){
         this.buildHelper=buildHelper;
         this.roomsPanel=roomsPanel;
+        this.closeButton=closeButton;
     }
     public void enterMode(){
             buildHelper.SetBuildMode(true);
             roomsPanel.SetActive(true);
+            closeButton.SetActive(true);
     }
     public void exitMode()
     {
-        Debug.Log("çalıştı");
-         Shelter.Instance.currentModeNew=Shelter.Instance.EmptyMode;
+         Shelter.Instance.currentMode=Shelter.Instance.EmptyMode;
             buildHelper.RemoveReferences();
              roomsPanel.SetActive(false);
+             closeButton.SetActive(false);
     }
 }

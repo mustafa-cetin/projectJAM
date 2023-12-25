@@ -33,7 +33,7 @@ public class CitizenMode : IMode
 
     public void exitMode()
     {
-        Shelter.Instance.currentModeNew=Shelter.Instance.EmptyMode;
+        Shelter.Instance.currentMode=Shelter.Instance.EmptyMode;
        citizenGen.SelectedCitizen.ChangeSelectedValue(false);
         citizenGen.SetSelectedCitizenNull();
         panel.SetActive(false);

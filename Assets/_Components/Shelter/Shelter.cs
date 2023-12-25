@@ -25,8 +25,8 @@ private void Awake()
     public float timer;
     public List<Citizen> citizens;
 
-    public Mode currentMode=Mode.None;
-    public IMode currentModeNew;
+
+    public IMode currentMode;
     public BuildMode BuildMode{get;private set;}
     public TerraformMode TerraformMode{get;private set;}
      public CitizenMode CitizenMode{get;private set;}
@@ -52,7 +52,7 @@ private void Awake()
 
     private void Start() {
         EmptyMode=new EmptyMode();
-        Shelter.Instance.currentModeNew=Shelter.Instance.EmptyMode;
+        Shelter.Instance.currentMode=Shelter.Instance.EmptyMode;
         BuildMode= new BuildMode();
         TerraformMode=new TerraformMode();
         CitizenMode=new CitizenMode();
@@ -76,8 +76,8 @@ private void Awake()
 
         if (Time.time>=48f+timer)
         {
-            ChangeFood(-1*citizens.Count*10);
-            ChangeOxygen(-1*citizens.Count*10);
+            ChangeFood(-1*citizens.Count*2);
+            ChangeOxygen(-1*citizens.Count*2);
             Day++;
             timer=Time.time;
         }
@@ -112,12 +112,5 @@ private void Awake()
     public int planetTerraforming;
 
 }
-    public enum Mode
-    {
-        None,
-        Build,
-        Character,
-        RoomEdit,
-        TerraformPanel
-    }
+
 

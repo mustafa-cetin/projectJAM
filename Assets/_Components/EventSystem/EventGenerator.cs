@@ -27,7 +27,7 @@ public class EventGenerator : MonoBehaviour
         Events currentEvents = EventsArray[randomEventNum];
 
         Sprite currentSprite = EventsArray[randomEventNum].Background;
-        
+
         eventBackground.sprite = currentSprite;
 
         mainText.text = currentEvents.Event;
@@ -36,7 +36,7 @@ public class EventGenerator : MonoBehaviour
 
         button2Text.text = currentEvents.EventChoices[1];
 
-        
+
     }
     string checkShelterStateLevels(){
         if(Shelter.Instance.Electric < 30){
@@ -99,25 +99,25 @@ public class EventGenerator : MonoBehaviour
 
     public void Chosed1(){
         choiceMade = 1;
-        
+
         Canvas.SetActive(false);
 
         madeEventAffects(eventNum);
     }
 
     public void Chosed2(){
-        choiceMade = 2; 
+        choiceMade = 2;
 
         Canvas.SetActive(false);
 
         madeEventAffects(eventNum);
     }
-    
-    
-    
-    
+
+
+
+
     public void madeEventAffects(int eventNum){
-        
+
         int prob = chance50();
         Debug.Log(choiceMade);
 
@@ -137,7 +137,7 @@ public class EventGenerator : MonoBehaviour
                     Debug.Log("Girdi rebel artmadı");
                     increaseRebel(20);
                 }
-                
+
 
                 break;
             case 1:
@@ -148,7 +148,7 @@ public class EventGenerator : MonoBehaviour
                     for(int i=0;i<3;i++){
                         citizenGenerator.defineCitizen();
                     }
-                    
+
 
 
                     prob = chance50();
@@ -160,20 +160,20 @@ public class EventGenerator : MonoBehaviour
                         decreaseRebel(20);
                     }
                 }
-                
+
                 break;
             case 2:
-                            
+
                 if(choiceMade == 1){
 
                     decreaseRebel(10);
                     decreaseMetal(30);
                     decreaseFood(30);
-                    
+
                 }
                 if(choiceMade == 2){
                     prob = chance50();
-                    
+
                     if(prob == 1){
                         decreaseRebel(Shelter.Instance.rebel);
                     }
@@ -182,7 +182,7 @@ public class EventGenerator : MonoBehaviour
                     }
                 }
 
-                
+
 
 
                 break;
@@ -193,7 +193,7 @@ public class EventGenerator : MonoBehaviour
                 }
                 else if(choiceMade == 2){
                     decreaseMetal(30);
-                    
+
                 }
 
                 break;
@@ -204,15 +204,15 @@ public class EventGenerator : MonoBehaviour
                     increaseElec(20);
                     increaseFood(20);
 
-                    
+
                 }
                 if(choiceMade == 2){
                     decreaseMetal(20);
                     decreaseFood(20);
                     decreaseRebel(30);
-                    
+
                 }
-                
+
                 break;
             case 5:
                 if(choiceMade == 1){
@@ -220,50 +220,50 @@ public class EventGenerator : MonoBehaviour
 
                     increaseFood(50);
 
-                    
+
                 }
                 if(choiceMade == 2){
                     decreaseMetal(50);
                     decreaseRebel(20);
-                    
+
                 }
                 break;
             case 6:
                 if(choiceMade == 1){
                     decreaseMetal(20);
-                    
+
                 }
                 if(choiceMade == 2){
                     increaseOxygen(50);
-                }  
-                break; 
+                }
+                break;
              case 7:
                 if(choiceMade == 1){
                     decreaseElec(40);
-                    
+
                 }
                 if(choiceMade == 2){
                    decreaseOxygen(30);
                 }
-                break; 
+                break;
             case 8:
                 if(choiceMade == 1){
                     decreaseRebel(Shelter.Instance.rebel);
                     increaseMetal(20);
-                    
+
                 }
                 if(choiceMade == 2){
                     increaseRebel(30);
                     decreaseFood(80);
                 }
-                break;       
+                break;
             case 9:
                 if(choiceMade == 1){
                     increaseMetal(20);
                     increaseRebel(30);
                     increaseFood(50);
-                    
-                    
+
+
                 }
                 if(choiceMade == 2){
                     increaseElec(30);
@@ -271,14 +271,14 @@ public class EventGenerator : MonoBehaviour
                     increaseMetal(30);
                     increaseOxygen(30);
                     decreaseRebel(10);
-                }   
+                }
                 break;
-            
-        } 
-        
+
+        }
+
     }
-    
-    
+
+
     //int randomEventNum;
 
     public int eventNum =-1;
@@ -293,10 +293,10 @@ public class EventGenerator : MonoBehaviour
         nextEventTime = FindTimeRange();
         elapsedTime = 0f;
     }
-    
+
     private void Update()
     {
-          
+
         if(!Canvas.activeInHierarchy){
             elapsedTime += Time.deltaTime;
         }
@@ -306,19 +306,19 @@ public class EventGenerator : MonoBehaviour
             if(eventNum<9){
                 eventNum+=1;
             }
-            
+
             executeEvent();
             nextEventTime = FindTimeRange();
             elapsedTime = 0f;
         }
-        
+
     }
 
     private float FindTimeRange()
     {
         return Random.Range(minTime, maxTime);
     }
-    
+
     public void executeEvent()
     {
 
@@ -335,11 +335,11 @@ public class EventGenerator : MonoBehaviour
        // callRandomEvent(randomEventNum);
 
        // madeEventAffects(randomEventNum);
-        
+
         Canvas.SetActive(true);
-        
+
     }
-    
+
 
 
 

@@ -16,6 +16,7 @@ public class CitizenGenerator : MonoBehaviour
     public GameObject panel;
     public TMP_Text textObject;
 
+    private string[] names = { "John", "Jane", "Bob", "Lisa", "Mike", "Anna", "Alex", "Ella", "Paul", "Mara" };
 
     public void defineCitizen(){
         BaseDefineCitizen(new Vector3(-12,-1.25f,0));
@@ -45,16 +46,22 @@ public class CitizenGenerator : MonoBehaviour
                     int cook = SelectedCitizen.cooking;
                     int intel = SelectedCitizen.intel;
                     int strength = SelectedCitizen.strength;
-
-                    Debug.Log("name");
-                    Debug.Log(name);
-                    Debug.Log("name");
-                    textObject.text = "Name : " + name + "\nEndurance : " + endu + "\nCooking : " + cook + "\nIntelligence : " + intel + "\nStrength : " + strength;
+                    string currentWork ="None";
+                    if (SelectedCitizen.currentRoom!=null)
+                    {
+                        currentWork=SelectedCitizen.currentRoom.ToString();
+                    }
+                    textObject.text = "Name: " + name + "\nEndurance: " + endu + "\nCooking: " + cook + "\nIntelligence: " + intel + "\nStrength: " + strength+"\nCurrent Work: "+currentWork;
 
     }
     public void HideStatPanel(){
-
                 panel.gameObject.SetActive(false);
+    }
+
+    void Start(){
+        for(int i=0;i<4;i++){
+            defineCitizen();
+        }
     }
     private void  Update() {
         if (Input.GetMouseButtonDown(0))
@@ -80,40 +87,36 @@ public class CitizenGenerator : MonoBehaviour
             {
 
                 Shelter.Instance.CitizenMode.init(panel,this);
-                Shelter.Instance.currentModeNew.exitMode();
+                Shelter.Instance.currentMode.exitMode();
 
             }
             else
             {
 
                 Shelter.Instance.CitizenMode.init(panel,this);
-                Shelter.Instance.currentModeNew.exitMode();
+                Shelter.Instance.currentMode.exitMode();
                 if (SelectedCitizen!=null)
                 {
                     SelectedCitizen.ChangeSelectedValue(false);
                 }
                 SelectedCitizen=clickedCitizen;
-                Shelter.Instance.currentModeNew=Shelter.Instance.CitizenMode;
-                Shelter.Instance.currentModeNew.enterMode();
+                Shelter.Instance.currentMode=Shelter.Instance.CitizenMode;
+                Shelter.Instance.currentMode.enterMode();
             }
             }
 
         }
-
-
-        else if(Shelter.Instance.currentModeNew.Equals(Shelter.Instance.CitizenMode))
-
+        else if(Shelter.Instance.currentMode.Equals(Shelter.Instance.CitizenMode))
         {
 
 
             Vector3 mousePosition = Input.mousePosition;
             mousePosition.z = Camera.main.nearClipPlane;
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            if (roomManager.GetRoom(worldPosition)!=null)
+            Room clickedRoom = roomManager.GetRoom(worldPosition);
+            if (clickedRoom!=null)
             {
 
-                HideStatPanel();
-            Room clickedRoom = roomManager.GetRoom(worldPosition);
                 if (SelectedCitizen.currentRoom!=null)
                 {
                     if (SelectedCitizen.currentRoom.CompareTag("ResourceRoom"))
@@ -130,6 +133,7 @@ public class CitizenGenerator : MonoBehaviour
                     {
                         return;
                     }else{
+
                         clickedRoom.GetComponent<ResourceRoom>().SetWorker(SelectedCitizen);
                     }
                 }
@@ -164,18 +168,15 @@ public class CitizenGenerator : MonoBehaviour
                 }
                     SelectedCitizen.SetTargetPosition(targetRoomPositions);
                      SelectedCitizen.currentRoom=clickedRoom;
+
+                         ShowStatPanel();
             }
         }
-
-
-
-   // Oyun dünyası üzerinde bir şey yap
             }
 
         }
     }
 
-    private string[] names = { "John", "Jane", "Bob", "Lisa", "Mike", "Anna", "Alex", "Ella", "Paul", "Mara" };
 
     private string GenerateRandomName()
     {
@@ -191,11 +192,6 @@ public class CitizenGenerator : MonoBehaviour
         return randomName;
     }
 
-    void Start(){
-        for(int i=0;i<4;i++){
-            defineCitizen();
-        }
-    }
     public void SetSelectedCitizenNull(){
         SelectedCitizen=null;
     }

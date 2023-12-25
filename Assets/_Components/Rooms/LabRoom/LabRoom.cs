@@ -31,5 +31,9 @@ public class LabRoom : ResourceRoom
             timer=Time.time;
         }
     }
+     public override string ToString()
+    {
+        return "Laboratary";
+    }
 
 }

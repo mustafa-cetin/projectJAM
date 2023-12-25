@@ -20,7 +20,12 @@ public class RoomManager : MonoBehaviour
         return shelterGrid.GetWorldPosition(shelterGrid.GetGridTilePosition(position));
     }
     public Room GetRoom(Vector3 position){
-        return shelterGrid.GetShelterGridTileWorldPosition(position).GetRoom();
+        ShelterGridTile shelterGridTile= shelterGrid.GetShelterGridTileWorldPosition(position);
+        if (shelterGridTile!=null)
+        {
+            return shelterGridTile.GetRoom();
+        }
+        return null;
     }
     public int GetElevation(Vector3 position){
         return shelterGrid.GetGridTilePosition(position).y;
@@ -60,7 +65,7 @@ public class RoomManager : MonoBehaviour
             Room buildedRoom=Instantiate(SelectedRoomType,transform);
             tile.SetRoom(buildedRoom);
             buildedRoom.transform.position=shelterGrid.GetWorldPosition(tile.GetPosition());
-            if (Shelter.Instance.currentModeNew.Equals(Shelter.Instance.BuildMode))
+            if (Shelter.Instance.currentMode.Equals(Shelter.Instance.BuildMode))
             {
                 buildHelper.ShowBuildablePlaces();
             }

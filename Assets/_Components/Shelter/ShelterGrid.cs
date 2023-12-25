@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShelterGrid : MonoBehaviour
-{   
+{
     [SerializeField]
     private int shelterGridSizeX,shelterGridSizeY;
 
@@ -42,7 +42,7 @@ public class ShelterGrid : MonoBehaviour
         int realY=Mathf.FloorToInt(yPos);
         return new Vector2Int(realX,realY);
     }
-    
+
     public ShelterGridTile GetShelterGridTileWorldPosition(Vector3 worldPosition){
         return GetShelterGridTile(GetGridTilePosition(worldPosition));
     }
@@ -63,7 +63,7 @@ public class ShelterGrid : MonoBehaviour
     }
     public bool[,] GetBuildableAreaOnGrid(Room room){
         bool[,] buildableArea=new bool[shelterGridSizeX,shelterGridSizeY];
-        
+
         for (int x = 0; x < shelterGridSizeX; x++)
         {
             for (int y = 0; y < shelterGridSizeY; y++)
@@ -71,7 +71,7 @@ public class ShelterGrid : MonoBehaviour
                 buildableArea[x,y]=room.IsBuildableTheTile(this,shelterGrid[x,y]);
             }
         }
-        
+
 
 
         return buildableArea;
@@ -108,13 +108,13 @@ public class ShelterGrid : MonoBehaviour
     }
 
     private void OnDrawGizmos() {
-        
+
         for (int x = 0; x < shelterGridSizeX; x++)
         {
             for (int y = 0; y < shelterGridSizeY; y++)
             {
                 Gizmos.DrawLine(new Vector3(x*cellSizeX,y*cellSizeY,0)+transform.position,new Vector3((x+1)*cellSizeX,y*cellSizeY,0)+transform.position);
-                
+
                 Gizmos.DrawLine(new Vector3(x*cellSizeX,y*cellSizeY,0)+transform.position,new Vector3(x*cellSizeX,(y+1)*cellSizeY,0)+transform.position);
             }
         }

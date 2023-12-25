@@ -15,7 +15,7 @@ public class UIInfoPanel : MonoBehaviour
     {
         timeText.text=Shelter.Instance.timeText;
         dayText.text=Shelter.Instance.Day.ToString();
-        infoText.text=Shelter.Instance.currentModeNew.ToString();
+        infoText.text=Shelter.Instance.currentMode.ToString();
 
 
     }

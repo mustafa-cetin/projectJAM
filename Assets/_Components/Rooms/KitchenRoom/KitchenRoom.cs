@@ -24,5 +24,9 @@ public class KitchenRoom : ResourceRoom
             timer=Time.time;
         }
     }
+     public override string ToString()
+    {
+        return "Kitchen";
+    }
 
 }

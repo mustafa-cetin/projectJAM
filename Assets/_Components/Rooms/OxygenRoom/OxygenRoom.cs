@@ -25,4 +25,8 @@ public class OxygenRoom : ResourceRoom
             timer=Time.time;
         }
     }
+     public override string ToString()
+    {
+        return "Greenhouse";
+    }
 }

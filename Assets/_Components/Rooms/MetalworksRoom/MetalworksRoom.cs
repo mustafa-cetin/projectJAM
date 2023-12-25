@@ -25,5 +25,9 @@ public class MetalworksRoom : ResourceRoom
             timer=Time.time;
         }
     }
+     public override string ToString()
+    {
+        return "Metal Workshop";
+    }
 
 }

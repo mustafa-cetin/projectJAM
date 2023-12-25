@@ -16,15 +16,13 @@ public class Citizen : MonoBehaviour
 
     public int intel;
 
-    public int cooking; 
-
-
+    public int cooking;
 
     public Vector3[] targetPosition; // Gitmek istediğiniz pozisyon
     public float arrivalThreshold = 0.1f; // Hedefe varma eşiği
     public float moveSpeed = 5f; // Hareket hızı
 
-    
+
     private bool hasArrived = false; // Hedefe ulaşıldı mı?
 
     public Room currentRoom;
@@ -60,7 +58,7 @@ public class Citizen : MonoBehaviour
             col.isTrigger=true;
             if (i!=1)
             {
-                
+
             // Karakterin hedef pozisyona doğru hareket etmesini sağlar.
             transform.position = Vector3.MoveTowards(transform.position, targetPosition[i], moveSpeed * Time.deltaTime);
 
@@ -74,16 +72,16 @@ public class Citizen : MonoBehaviour
             {
                 transform.localEulerAngles=new Vector3(0,0,0);
             }else{
-                
+
                 transform.localEulerAngles=new Vector3(0,180,0);
             }
             // Hedefe ulaşma durumunu kontrol et
             if (Vector3.Distance(transform.position, targetPosition[i]) < arrivalThreshold)
             {
                 // Hedefe ulaşıldığında yapılacak işlemler buraya yazılır
-                Debug.Log("Hedefe ulaşıldı!");
+
                 hasArrived = true; // Hedefe ulaşıldı
-                
+
                 col.isTrigger=false;
             }
         }
@@ -94,11 +92,11 @@ public class Citizen : MonoBehaviour
                 i++;
             }
         }
-        
+
     }
 
 
-   
+
 
 
 }

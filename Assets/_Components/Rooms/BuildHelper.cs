@@ -25,7 +25,7 @@ public class BuildHelper : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && Shelter.Instance.currentModeNew.Equals(Shelter.Instance.BuildMode) && roomManager.SelectedRoomType!=null)
+        if (Input.GetMouseButtonDown(0) && Shelter.Instance.currentMode.Equals(Shelter.Instance.BuildMode) && roomManager.SelectedRoomType!=null)
         {
             if (!EventSystem.current.IsPointerOverGameObject()) // Eğer UI üzerinde tıklama yoksa devam et
             {
@@ -82,7 +82,6 @@ public class BuildHelper : MonoBehaviour
     }
     public void SetBuildMode(bool state){
         if (!state){
-            Shelter.Instance.currentMode=Mode.None;
             RemoveReferences();
         }else{
             roomManager.SetSelectedRoomType(null);

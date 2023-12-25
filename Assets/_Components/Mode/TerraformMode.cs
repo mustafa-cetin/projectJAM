@@ -19,7 +19,7 @@ public class TerraformMode : IMode
 
     public void exitMode()
     {
-        Shelter.Instance.currentModeNew=Shelter.Instance.EmptyMode;
+        Shelter.Instance.currentMode=Shelter.Instance.EmptyMode;
         panel.SetActive(false);
     }
 }

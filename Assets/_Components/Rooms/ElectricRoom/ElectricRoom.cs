@@ -24,5 +24,9 @@ public class ElectricRoom : ResourceRoom
             timer=Time.time;
         }
     }
+     public override string ToString()
+    {
+        return "Power Station";
+    }
 
 }
